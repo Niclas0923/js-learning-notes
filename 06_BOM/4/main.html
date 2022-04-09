@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+	<script type="text/javascript">
+
+		// Json
+		// 把 js 的对象传递给其他语言的方式
+		var obj = '{"name" : "zhr", "age":19,"gender":"男"}';
+		// 对象的属性名称必须用双引号括起来
+		// 分类
+		// 对象 {}，数组 []
+		var dd = '[12,13,true,"hello"]'
+		// 其中不能放入函数
+		
+		
+		
+		// 将 JSON 字符串转换为 js 中的对象
+		// json.parse()
+		var mm = JSON.parse(obj)
+		console.log(mm,typeof mm)
+		// {"age":19,"gender":"男","name":"zhr"} object
+		
+		
+		
+		// 对象转为 JSON
+		// JSON.stringify()
+		var obj3 = {name:"qiantong",age:20,gender:"男"};
+		console.log(JSON.stringify(obj3),typeof JSON.stringify(obj3))
+		// {"name":"qiantong","age":20,"gender":"男"} string
+		
+		
+		// 在 IE7 及以下报错
+		// 如有需要兼容，可以引入一个文件: JSON2.js
+		// 直接放在本文件目录和tool里了，需要自取
+		
+		
+	</script>
+</head>
+<body>
+    
+</body>
+</html>

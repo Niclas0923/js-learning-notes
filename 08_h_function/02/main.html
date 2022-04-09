@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body{background-color: black;}
+    </style>
+</head>
+<body>
+    <script>
+        var a = 3
+        function fu() {
+            var a = 4
+        }
+        console.log(a)
+    </script>
+
+    <!--
+        通过var声明并赋值的变量可以直接被访问和调用
+            仅进行声明的也会返回undefined（声明提升？）
+                js运行时会提前声明所有通过var声明的变量之后再按照代码运行顺序进行赋值
+    -->
+
+    <!--
+        通过function声明的函数，在之前就可以直接调用
+            js运行时会把函数提前声明并读取
+            所以可以直接调用
+            它的值为函数对象
+    -->
+
+    <!--
+        代码分类
+            全局代码
+            函数代码(局部代码)
+
+        全局执行上下文
+            在执行代码前会将Window确定为全局执行上下文
+            对全局变量进行预处理
+                var声明的变量 ==> undefined
+                function声明的全局函数 ==> 赋值并且添加到Window方法中
+                this ==> 赋值为Window
+            之后才会运行代码
+
+        函数执行上下文
+            在调用函数，准备执行函数之前对函数执行上下文对象
+            对象就不数据进行预处理
+                形参变量 ==> 赋值，添加为执行上下文的属性
+                argument ==> 赋值，实参列表，
+                var定义的属性 ==> undefined
+                function声明的函数 ==> 赋值（fun）
+                this ==> 赋值为当前函数对象
+            之后再运行代码
+    -->
+    <script>
+        function ff ( ) {
+            var aaa = 10
+        }
+        console.log(ff.aaa)     // undefined
+        console.log(ff.arguments)   // null
+    </script>
+
+    <!--
+        在全局代码执行之前，js会创建一个栈来储存管理所有执行上下文对象
+        在执行上下文（Window）确定之后，将其添加到栈中（压栈）
+        在执行上下文创建之后，将其添加到栈中（压栈）
+        当当前函数执行玩后，将栈顶的对象移除（出栈）
+        当所有代码执行完后，栈中只剩下Window
+    -->
+
+    <script>
+            function a( ) { }
+            var a
+            console.log(a)      //  a {}
+    </script>
+
+    <script>
+        if(!(b in window)){
+            var b = 1
+        }
+        console.log(b)          // undefined
+    </script>
+
+    <script>
+        var c = 1
+        function c(c) {
+            console.log(c)
+        }
+        // c(2)       // 报错，c不是函数
+        // 执行前预处理，先完整的c{}传入，之后赋值了c = 1，所以c不是函数了
+        console.log(c)      // 1
+    </script>
+</body>
+</html>

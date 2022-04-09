@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			window.onload = function(){
+				var len = document.getElementById("len");
+				len.onclick = function(){
+					alert(history.length);
+				}
+				
+				var ba = document.getElementById("ba");
+				ba.onclick = function(){
+					history.back();
+					// 用back返回的记录不会记录到历史中
+				}
+				
+				var go = document.getElementById("go");
+				go.onclick = function(){
+					// 1表示向后1个页面
+					// -1表示向前一个页面
+					history.go(1);
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<h1>测试2</h1>
+		<a href="main.html">go01</a>
+		<br>
+		<button type="button" id="len">len</button>
+		<br>
+		<button type="button" id="ba">back</button>
+		<br>
+		<button type="button" id="go">go</button>
+	</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>f</title>
+		<style type="text/css">
+			#re{
+				width: 100px;
+				height: 100px;
+				background-color: red;
+				position: absolute;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload = function(){
+
+				// 键盘事件
+				// onkeydown	如果按着一个按键不松手，会一直被触发
+				// onkeyup
+				
+				var re = document.getElementById("re"); 
+				// 键盘事件，一般绑定在能获取焦点的对象，例如input	或者document
+				document.onkeydown = function(event){
+					event = event || window.event;
+					var speed = 20;
+					
+					// 按下ctrl后加速
+					if(event.shiftKey){
+						speed = 50;
+					}
+					
+					var a = event.keyCode;
+					switch(a){
+						case 37||65:
+							re.style.left = re.offsetLeft - speed + "px";break;
+						case 38||87:
+							re.style.top = re.offsetTop - speed + "px";break;
+						case 39||68:
+							re.style.left = re.offsetLeft + speed + "px";break;
+						case 40||83:
+							re.style.top = re.offsetTop + speed + "px";break;
+					}
+					// console.log(a+"按键被按下了。");
+					// return false;
+				}
+			}
+		</script> 
+	</head>
+	<body>
+		<div id="re">
+			
+		</div>
+	</body> 
+</html>

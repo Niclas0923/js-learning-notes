@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <!-- 事件的委派 -->
+    <script>
+        window.onload = function(){
+
+            var u1 = document.getElementById("u1");
+
+            // 不推荐使用
+            // var alll = document.getElementsByTagName("a");
+            // for (var i = 0;i<alll.length ; i++){
+            //     alll[i].onclick = function(){
+            //         alert("我是a的单击相应函数!")
+            //     }
+            // }
+
+            var bt1 = document.getElementById("bt1");
+            bt1.onclick = function(){
+                var li = document.createElement("li");
+                li.innerHTML = "<a href='javascript:;' class='aa'>超链接1</a>";
+                u1.appendChild(li);
+            }
+
+            // 直接把单击响应函数绑定在夫元素上
+            u1.onclick = function(evemt){
+                // 通过判断函数响应来源来判断是否执行
+                if(event.target.className == "aa"){
+                    alert("出了!");
+                }
+            }
+            
+        }
+    </script>
+</head>
+<body>
+    <button id="bt1">新建</button>
+    <ul id="u1">
+        <li><a href="javascript:'" class="aa">超链接1</a></li>
+        <li><a href="javascript:'" class="aa">超链接2</a></li>
+        <li><a href="javascript:'" class="aa">超链接3</a></li>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+        什么是函数？为什么要用函数？
+            本质是对象，对多条语句进行封装，形成可随时调用的代码块
+            用函数可以减少代码的重复写入量，并且可以随时调用
+            用一个函数实现功能，提高代码可读性，方便交流
+     -->
+    <script>
+        function cmj() {
+            console.log("ich liebt dich");
+        }
+        cmj()
+    </script>
+
+    <!-- 
+        定义函数的方式
+        两种：函数声明和表达式
+    -->
+
+    <script>
+        //  声明
+        function cmj2() {
+            console.log("ich liebt dich");
+        }
+        // 表达式
+        var cmj3 = function(){
+            console.log("ich liebt dich");
+        }
+    </script>
+
+    <!-- 
+        函数执行的方式
+            1 cmj()
+            2 obj.cmj()
+            3 new cmj()
+            cmj.call()/apply
+    -->
+
+    <!-- 
+        什么是回调函数？常见的有哪些？
+            我定义的，我不调用，它执行了
+            满足这三点就是回调函数
+            常见的就以下两种
+    -->
+    <button id="bu1">点我啊</button>
+    <script>
+        var btn = document.getElementById("bu1");
+        btn.onclick = function(){
+            alert("回调函数")
+        }
+
+        // 定时器
+        // 延时
+        // 循环
+        setTimeout(() => {
+            console.log("这个也是回调函数")
+        }, 2000);
+        var i = 0;
+        setInterval(() => {
+            i++;
+            console.log("这是第"+i+"个回调函数执行");
+        }, 800);
+    </script>
+</body>
+</html>

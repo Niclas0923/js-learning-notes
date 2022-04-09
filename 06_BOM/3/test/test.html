@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #kuang{ 
+            width: 500px;
+            height: 332px;
+            padding: 10px;
+            background-color: dodgerblue;
+            position: relative;
+            margin: 200px auto;
+            overflow: hidden;
+        }
+        #imgs{
+            list-style: none;
+            position:absolute;
+            left: 0px;
+        }
+        li{
+            float: left;
+            padding: 0px 10px;
+        }
+        #aaa{
+            position: absolute;
+            bottom: 12px;
+        }
+        #aaa a{
+            float: left;
+            width: 15px;
+            height: 15px;
+            background-color: red;
+            margin: 0 5px;
+            opacity: 0.5;
+            /* 兼容IE8 */
+            filter: alpha(opacity=50);
+        }
+    </style>
+    <script src="tools.js"></script>
+    <script>
+        window.onload = function(){
+            // 定位各种项
+            // 宽度设置
+            var imgs = document.getElementById("imgs");
+            var img = document.getElementsByTagName("img");
+            imgs.style.width = img.length*(500+20)+"px";
+            // 下方超链接定位
+            var aaa = document.getElementById("aaa");
+            aaa.style.left = (500 - aaa.offsetWidth)/2+"px";
+            var alla = document.getElementsByTagName("a");
+            // 默认位置设置
+            var zaizhe = 0;
+            alla[zaizhe].style.backgroundColor = "black";
+            var timer;
+            // 绑定超链接
+            for(var i = 0 ; i < alla.length ; i++){
+                alla[i].num = i;
+                alla[i].onclick = function(){
+                    clearInterval(timer);
+                    zaizhe = this.num;
+                    satA();
+                    // imgs.style.left = 10-zaizhe*(500+10)+"px";
+                    move(imgs,"left",-zaizhe*(500+20),30,function(){
+                        Autochange();
+                    });
+                    
+                    alla[zaizhe].style.backgroundColor = "black";
+                }
+            }
+            function satA(){
+                if(zaizhe >= alla.length ){
+						//则将index设置为0
+						zaizhe = 0;
+						
+						//此时显示的最后一张图片，而最后一张图片和第一张是一摸一样
+						//通过CSS将最后一张切换成第一张
+						imgs.style.left = 0;
+				}
+                for(var o=0;o<alla.length;o++){
+                    alla[o].style.backgroundColor = "";
+                }
+                alla[zaizhe].style.backgroundColor = "black";
+            }
+            function Autochange(){
+                timer = setInterval(function(){
+                    zaizhe %= alla.length;
+                    zaizhe++;
+                    var ss;
+                    // if(zaizhe == 1){
+                    //     ss = -500*zaizhe;
+                    // }else if(zaizhe == 2){
+                    //     ss =-505*zaizhe;
+                    // }else{
+                    //     ss =-505*zaizhe;
+                    // }
+                    ss = -520*zaizhe;
+                    move(imgs , "left" , ss , 20 , function(){
+                        //修改导航按钮
+                        satA();
+                    });
+                },2000)
+            }
+            Autochange()
+            
+        }
+    </script>
+</head>
+<body>
+    <div id="kuang">
+        <ul id="imgs">
+            <li><img src="img/1.jpg" alt=""></li>
+            <li><img src="img/2.jpg" alt=""></li>
+            <li><img src="img/3.jpg" alt=""></li>
+            <li><img src="img/4.jpg" alt=""></li>
+            <li><img src="img/5.jpg" alt=""></li>
+            <li><img src="img/1.jpg" alt=""></li>
+        </ul>
+        <div id="aaa">
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+        </div>
+    </div>
+    
+</body>
+</html>

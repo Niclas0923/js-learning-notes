@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: rgb(43, 43, 43);
+        }
+        #box1{
+            margin: 30px auto;
+            width: 400px;
+            height: 250px;
+            background-color: orange;
+            padding: 10px;
+            border: 10px solid yellow;
+        }
+        .lll{
+            margin: 20px auto;
+            width: 420px;
+            /* background-color: aqua; */
+        }
+        #box4{
+            width: 200px;
+            height: 300px;
+            background-color: aquamarine;
+            margin: auto;
+            overflow: auto;
+        }
+        #box5{
+            width: 150px;
+            height: 600px;
+            background-color: yellow;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            var box1 = document.getElementById("box1");
+
+            var bt1 = document.getElementById("btn1");
+            bt1.onclick = function(){
+                // clientWidth()    clientHeight()  可视宽度和长度
+                alert(box1.clientHeight);
+                // 返回值不带px等单位，可以直接计算
+                // 返回值是实际宽度，所以是加上padding的内边框的值
+                // 但是会加上边框border
+                // 这个属性是只读的，不能直接通过这个修改
+            }
+
+
+            var bt2= document.getElementById("btn2");
+            bt2.onclick = function(){
+                // offsetWidth    返回元素的宽度和高度
+                alert(box1.offsetHeight);
+                // 返回值不带px等单位，可以直接计算
+                // 这个会计算元素的高度，把边框border也算上
+            }
+
+
+            var bt3= document.getElementById("btn3");
+            bt3.onclick = function(){
+                // offsetParent()
+                // 获取当前元素的定位父元素
+                alert(box1.offsetParent.innerHTML);
+                // 也就是距离最近的开启了定位的祖先元素
+            }
+
+
+            var bt4= document.getElementById("btn4");
+            bt4.onclick = function(){
+                // offsetLeft   offsetTop
+                // 当前元素对于定位元素的水平偏移量     垂直偏移量
+                alert("x = "+box1.offsetLeft+"\ny = "+box1.offsetTop);
+            }
+
+
+            var box4 = document.getElementById("box4");
+            var box5 = document.getElementById("box5")
+            var bt5= document.getElementById("btn5");
+            bt5.onclick = function(){
+                // alert(box4.clientHeight);
+                // 通过这个可以获取滑动区域内的高度
+                alert(box4.scrollHeight);
+            }
+
+
+            var bt6= document.getElementById("btn6");
+            bt6.onclick = function(){
+                // 可获取滚动条所在的位置
+                alert(box4.scrollTop);
+            }
+            // box4.scrollHeight - box4.scrollTop = box4.clientHeight
+
+        }
+    </script>
+</head>
+<body>
+
+    <div id="box1"></div>
+    <div class="lll">
+
+        <button id="btn1">点我一下啊～</button>
+
+        <button id="btn2">点我一下啊～</button>
+    
+        <button id="btn3">点我一下啊～</button>
+    
+        <button id="btn4">点我一下啊～</button>
+    
+    </div>
+    
+    <div id="box4">
+        <div id="box5">
+
+        </div>
+    </div>
+
+    <div class="lll">
+
+        <button id="btn5">点我一下啊～</button>
+
+        <button id="btn6">点我一下啊～</button>
+
+    </div>
+    
+
+</body>
+</html>

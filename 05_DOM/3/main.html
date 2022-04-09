@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+    // onload事件会在整个页面加载完成之后才出发
+    window.onload = function(){
+        var sss = document.getElementById("lll"); 
+        sss.onclick = function(){
+            console.log("sss");
+        };
+    };
+    </script>
+    <!-- 写在外面直接调用也是相同的效果 -->
+    <script src="js.js"></script>
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+    <div><button class="ddddd" id="lll">我是一个按钮</button></div>
+    <div><button class="ddddd" id="ooo">我是一个按钮</button></div>
+</body>
+</html>

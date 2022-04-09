@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        this 是什么?
+            所有函数都有的一个元素
+            它的内容是调用这个函数的对象(window)
+            如果指定可以用call来指定，默认是window
+     -->
+    <script>
+        function Person(color){
+            console.log(this);
+            this.color = color;
+            this.getColor = function(){
+                console.log(this)
+                return this.color;
+            };
+            this.setColor = function(color){
+                console.log(this);
+                this.color = color
+            }
+        }
+        Person("red");      // window
+
+        var p = new Person("yellow");    // p
+
+        var a = {};
+
+        p.setColor.call(a,"black");     // {}   也就是 a
+    </script>
+    
+    <!-- 
+        语句后分号的问题
+            分号大多时候是可加可不加
+            但是有一些特殊情况
+     -->
+
+    <script>
+
+        // 1 小括号开头的前一条语句(自己调用自己的函数)
+        //      由于js会无视所有空格，所以会被认为成上一条语句的函数执行
+        // 2 中括号开头的前一条语句
+        //      会被认为成调用上一个语句的元素而报错
+
+        console.log("ddd")
+        ;(function(){
+            console.log("mai")
+        })()
+
+        ;[3,4].forEach(element => {
+            
+        });
+
+    </script>
+</body>
+</html>

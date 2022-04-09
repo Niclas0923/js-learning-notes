@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        数据的定义
+            内存中用于代表信息的东西，本质是二进制数字
+            特点：可传递，可运算
+            是操作的目标，用于算术运算，逻辑运算，赋值，运行函数
+        内存的定义
+            可用于临时存储的空间
+            分类：
+                栈：全局变量和局部变量(变量名)
+                堆：对象
+        变量的定义
+            可变化的量，由变量名和变量值组成
+            在内存中可通过变量名来获取变量值
+        数据,内存,变量三者之间的关系：
+            内存是存储数据的临时空间
+            变量是内存的标识
+     -->
+     <!-- 
+         关于赋值和内存的问题
+            var a = xxx,a内存中到底保存的是什么？
+                xxx是基本数据，保存的就是这个值
+                xxx是对象，保存的就是对象的地址值
+                xxx是变量，保存的就是变量的内容
+      -->
+      <!-- 
+          关于引用变量赋值的问题
+            两个变量指向同一个对象
+                将一个变量的内容(值或者内存地址)拷贝拷贝到另一个变量中
+                通过一个修改后，另一个也被修改
+                一个对象改变地址后，这两个对象就不再牵连
+       -->
+    <script>
+        var a ={age:12};
+        var b = a;
+        a.name="zhr";
+        console.log(b.name);        // zhr
+        a = {name:"myn"};
+        console.log(a.name);        // myn
+        console.log(b.name);        // zhr
+        function fn2(obj){
+            obj = {name:"dbs"}      // 这里只是obj与a的地址相同，之后obj更改地址了，不会影响到a的值
+        }
+        fn2(a);
+        console.log(a.name);        // myn
+    </script>
+
+    <!-- 
+        当js调用函数时是引用传递还是值传递？
+            值(基础是传递值，对象是传递地址)
+     -->
+     <script>
+         var a = 3;
+         function fun(a){       // 这里仅仅是把值3传入函数，不会再影响外部的变量a的值
+            a = a + 3;
+         }
+         fun(a);
+         console.log(a);        // 3
+     </script>
+
+     <!-- 
+        js引擎如何管理内存？
+            1 内存生命周期
+                1 分配空间
+                2 存储数据，可以反复读写
+                3 释放空间
+            2 释放内存
+                函数的作用后内的变量和对象会自动释放
+                能保存下来的只能是变量来接函数的返回值
+      -->
+
+      <script>
+        function mai(){
+            var mmms = 12;
+        }
+        mai()
+        console.log(window.mmms);
+            // 直接输出mmms直接报错
+            // 借助window输出告诉我不存在
+        var mmmo = 12;
+        console.log(window.mmmo);       // 12
+
+      </script>
+
+</body>
+</html>

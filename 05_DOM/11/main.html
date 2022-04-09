@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>拖动学习</title>
+		<style type="text/css">
+			body{
+				background-color: deepskyblue;
+			}
+			#box1{
+				width: 150px;
+				height: 150px;
+				background-color: red;
+				position: absolute;
+			}
+			#box2{
+				width: 150px;
+				height: 150px;
+				background-color: yellow;
+				position: absolute;
+				left: 200px;
+				top: 200px;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload = function(){
+				var bx1 = document.getElementById("box1");
+				var bx2 = document.getElementById("box2");
+				 
+				bx1.onmousedown = function(event){
+					
+					// 捕获
+					// bx1.setCapture();
+					// 只有IE支持，chrome报错，所以判断
+					if(bx1.setCapture){
+						bx1.setCapture();
+					}
+					
+					var a = bx1.offsetLeft;var b = bx1.offsetTop;
+					event = event || window.event;
+					var x1 = event.clientX;
+					var y1 = event.clientY;
+					x1 -= a;y1 -= b;		// 这两个值是鼠标对于bx1的偏移量，用于拖哪里，那跟着走
+					document.onmousemove = function(event){
+						event = event || window.event;
+						var st = document.body.scrollTop || document.documentElement.scrollTop;
+						var lt = document.body.scrollLeft || document.documentElement.scrollLeft;
+						var x = event.clientX;
+						var y = event.clientY;
+						bx1.style.left = (x + lt - x1)+"px";
+						bx1.style.top = (y + st - y1)+"px";
+						var a1 = bx1.offsetLeft;var b1 = bx1.offsetTop;
+						var a2 = bx2.offsetLeft;var b2 = bx2.offsetTop;
+						var aa = a1-a2;var bb = b1-b2;
+						console.log(a1+" "+b1+" "+a2+" "+b2+"\n"+(aa)+" "+(bb));
+						
+						if(-150<bb && bb<150){		// 判断可以在左右碰到的时候
+							if (-150<=aa && aa<=150){
+								if(0<aa){
+									bx2.style.left = (a1 -150)+"px";
+								}else{
+									bx2.style.left = (a1 +150)+"px";
+								}
+							}
+						}
+					}
+					document.onmouseup = function(){
+						// 这个地方要绑定在document上，不然会被同级覆盖
+						document.onmousemove = null;
+						// 这样只会触发一次，当再次拖动停止时会再次触发
+						document.onmouseup = null;
+						// 取消捕获
+						if(bx1.releaseCapture){
+							bx1.releaseCapture();
+						}
+					}
+					 
+					// 全选会导致拖拽功能的异常，会直接去浏览器搜索
+					// 这是浏览器提供的一个默认行为
+					// 直接取消即可
+					// 但是对IE8及以下又无效。。。。
+					// 所以在最开始直接拦截所有点击
+					return false;
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="box1"></div>
+		<div id="box2"></div>
+	</body>
+</html>

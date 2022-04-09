@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>sss</title>
+	<style type="text/css">
+		body{
+			background-color: deepskyblue;
+		}
+		#box1{
+			width: 150px;
+			height: 150px;
+			background-color: red;
+			position: absolute;
+		}
+		#box2{
+			width: 150px;
+			height: 150px;
+			background-color: yellow;
+			position: absolute;
+			left: 200px;
+			top: 200px;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload = function(){
+			var bx1 = document.getElementById("box1");
+			var bx2 = document.getElementById("box2");
+
+
+			function tuozhuai(obj){
+				obj.style.position = "absolute";
+				obj.onmousedown = function(event){
+					if(obj.setCapture){
+						obj.setCapture();
+					}
+					var a = obj.offsetLeft;var b = obj.offsetTop;
+					event = event || window.event;
+					var x1 = event.clientX;
+					var y1 = event.clientY;
+					x1 -= a;y1 -= b;
+					document.onmousemove = function(event){
+						event = event || window.event;
+						var st = document.body.scrollTop || document.documentElement.scrollTop;
+						var lt = document.body.scrollLeft || document.documentElement.scrollLeft;
+						var x = event.clientX;
+						var y = event.clientY;
+						obj.style.left = (x + lt - x1)+"px";
+						obj.style.top = (y + st - y1)+"px";
+					}
+					document.onmouseup = function(){
+						 document.onmousemove = null;
+						 document.onmouseup = null;
+						 if(obj.releaseCapture){
+							 obj.releaseCapture();
+						 }
+					}
+					 return false;
+				}
+			}
+			tuozhuai(bx1);
+			tuozhuai(bx2);
+		}
+	</script>
+</head>
+<body>
+	<div id="box1"></div>
+	<div id="box2"></div>
+</body>
+</html>

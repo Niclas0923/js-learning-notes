@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+        window.onload = function(){
+            var an = document.getElementById("an");
+            an.onclick = function(){
+                alert(1)
+            }
+
+            // addEventListener(事件，函数,布尔值)
+            // 这种绑定方式不需要on前缀 
+            // 布尔值表示是否处于补货阶段触发事件，一般是false
+            // an.addEventListener("click",function(){
+            //     alert(2);
+            // },false)
+            // an.addEventListener("click",function(){
+            //     alert(3);
+            // },false)
+            // 并且可以绑定多次，并且按照顺序执行
+            // 不过这个不支持IE8及以下浏览器。。。（你是真的不行啊微软！！！！）
+
+            // attachEvent()支持IE1-10，但是是后绑定先执行。。。。
+            // 这玩意是window的字属性，调用返回的this是window
+
+
+            // 自行定义一个兼容全部
+            // 并且统一两个方法中的this
+            function diaoyong(obj,strnoOn,fun){
+                if(obj.addEventListener){
+                    obj.addEventListener(strnoOn,fun,false);
+                }else{
+                    // this由调用函数决定
+                    obj.attachEvent("on"+strnoOn,function(){
+                        fun.call(obj)
+                    });
+                }
+            }
+
+
+            // 测试
+            var or = document.getElementById("or");
+            or.onclick = function(){
+                alert(1);
+            }
+            diaoyong(or,"click",function(){
+                alert(2);
+            })
+            
+        }
+    </script>
+</head>
+<body>
+    <button id="an">点我一下</button>
+    <button id="or">点我一下</button>
+</body>
+</html>

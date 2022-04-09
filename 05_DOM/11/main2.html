@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>l</title>
+	<style type="text/css">
+		/* html{
+			background-color: #00BFFF;
+		} */
+		body{
+			background-color: deepskyblue;
+		}
+		#bx1{
+			width: 300px;
+			height: 300px;
+			background-color: yellow;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload = function(){
+			var bx1 = document.getElementById("bx1");
+			
+			function diaoyong(obj,strnoOn,fun){
+			    if(obj.addEventListener){
+			        obj.addEventListener(strnoOn,fun,false);
+			    }else{
+			        // this由调用函数决定
+			        obj.attachEvent("on"+strnoOn,function(){
+			            fun.call(obj)
+			        });
+			    }
+			}
+			
+			bx1.onmouseover = function(){
+				
+				function fun(event){
+					event = event || window.event;
+					// wheelDelta可以获取鼠标对滚动方向
+					// 向下是正，向上是负
+					// 可喜的是，火狐，它又不支持。。。
+					if(event.wheelDelta){
+						console.log(event.wheelDelta);
+						if(event.wheelDelta>0){
+							bx1.style.height = (bx1.offsetHeight+event.wheelDelta/5)+"px";
+						}else{
+							bx1.style.height = (bx1.offsetHeight+event.wheelDelta/5)+"px";
+						}
+					}else{
+						// 火狐中使用event.detail来获取
+						console.log(event.detail);
+						if(event.detail>0){
+							bx1.style.height = (bx1.offsetHeight+event.detail*2)+"px";
+						}else{
+							bx1.style.height = (bx1.offsetHeight+event.detail*2)+"px";
+						}
+					}
+				}
+				
+				// 火狐不支持该属性
+				bx1.onmousewheel = fun;
+				// 火狐需要DOMMouseScroll这个属性来确定
+				// 而这个还需要addEventListener()函数来绑定
+				diaoyong(bx1,"DOMMouseScroll",fun)
+				
+				return false;
+				// 但是addEventListener()不支持
+				// 所以。。。
+				// event.preventDefault();
+				// 但是呢，IE8又不支持这个方法
+				event.preventDefault && event.preventDefault();
+			}
+		}
+	</script>
+</head>
+<body style="height: 1000px;">
+	<div id="bx1">
+	</div>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body{background-color: black;}
+    </style>
+</head>
+<body>
+    <!-- 
+        函数的prototype属性
+            没个函数都有这个属性，它指向一个object对象
+            对象里面有一个属性是constructor，它指向函数对象
+     -->
+    <script>
+        function fff(){
+            // console.log("prototype")
+        }
+        console.log(fff.prototype)
+    </script>
+
+    <!-- 
+        可以向prototype中添加方法
+        使得每个以它为原型对象的对象都可以直接调用
+    -->
+
+    <script>
+        fff.prototype.test = function(){
+            console.log(this)
+        }
+        const mmmp = new fff()
+        mmmp.test()         // fff {}
+    </script>
+
+    <!--
+        显式原型(属性)，隐式原型(属性)
+            每个函数都有prototype，称为显式原型
+            每个实例都有__proto__，称作隐式原型
+    -->
+
+    <script>
+        function Fn() {
+            
+        }
+
+        var mm = new Fn();
+        console.log(mm.__proto__)       // {constructor: ƒ}
+        
+    </script>
+
+    <!--
+        对象的隐式原型的值为其对应构造函数的显式原型的值
+    -->
+
+    <script>
+        console.log(Fn.prototype == mm.__proto__)
+        // true
+    </script>
+    <!--
+        原型链
+            访问一个对象的属性时，先在自身属性中寻找，
+            如果没有再沿着__proto__这条链上查找，找到就返回
+            找不到就返回undefined
+        别名是隐式原型链
+    -->
+
+    <!--
+        图解
+    -->
+    <img src="lct.png" alt="流程图" style="height: 900px;">
+
+    <!--
+        Function的__proto__和prototype的内容是一样的
+        它即是构造函数也是实例
+    -->
+    <script>
+        console.log(Function.prototype === Function.__proto__)
+        // true
+    </script>
+
+    <!--
+        补充：
+            1   函数现实原型指向的对象是空的object对象
+            2   所有函数都是Function的实例(包含Function)
+            3   Object的原型对象是原型链尽头
+    -->
+    <script>
+        console.log(Object.prototype.__proto__)
+        // null
+    </script>
+
+    <!-- 
+        instanceof的判断方式
+            表达式 A instanceof B
+            A表示一个实例对象，B表示一个函数对象
+
+            如果B函数的显示原型对象在A对象的原型链上，返回true
+    -->
+    
+    <script>
+        function Foo(){ }
+        var f1 = new Foo()
+        console.log(f1 instanceof Foo)          // true
+        console.log(f1 instanceof Object)       // true
+        console.log(f1 instanceof Function)     // false
+        console.log(Foo instanceof Function)    // true
+        console.log(Object instanceof Function) // true
+    </script>
+</body>
+</html>

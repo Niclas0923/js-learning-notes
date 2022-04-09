@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body{background-color: black;}
+    </style>
+</head>
+<body>
+    <!--
+        闭包
+    -->
+    <button>测试1</button>
+    <button>测试2</button>
+    <button>测试3</button>
+
+    <script>
+        
+        window.onload = function(){
+            var btns = document.getElementsByTagName("button")
+            var len = btns.length
+            // 第一种常规写法
+            // for(var i=0;i<len;i++){
+            //     btns[i].num = i+1
+            //     btns[i].onclick = function(){
+            //         alert("这是第"+this.num+"个按钮")
+            //     }
+            // }
+
+            // 第二种通过匿名函数（自执行函数）
+            // 利用闭包
+            for(var i=0;i<len;i++){
+                (function(i){
+                    var btn = btns[i]
+                    btn.onclick = function(){
+                        alert("这是第"+(i+1)+"个按钮")
+                    }
+                })(i)
+                // 这种是形成了函数出现了局部变量，让i与外面的i的定义不同，形成了多个局部执行上下文
+            }
+        }
+    </script>
+
+    <!--
+        如何产生闭包？
+            当一个嵌套的内部的函数用了嵌套外的函数的变量（函数）时，就产生了闭包
+        闭包是什么？
+            1   闭包是嵌套的内部函数
+            2   包含被引用变量（函数）的对象
+            ps：闭包存在于嵌套的内部函数中
+        产生闭包的条件
+            函数嵌套
+            内部函数引用了外部函数的变量
+    -->
+
+    <script>
+        function fn1(){
+            var a = 2
+            function fn2( ) {
+                console.log(a)
+            }
+            fu2()
+        }
+    </script>
+</body>
+</html>

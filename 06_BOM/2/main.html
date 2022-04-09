@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			window.onload = function(){
+				var lk = document.getElementById("lk");
+				lk.onclick = function(){
+					alert(location);
+				}
+				
+				var bd = document.getElementById("bd");
+				bd.onclick = function(){
+					// 可以直接更改location来实现跳转网站
+					location = "https://www.baidu.com";
+				}
+				
+				var re = document.getElementById("re");
+				re.onclick = function(){
+					// 相当于刷新
+					location.reload()
+					// 如果在其中传入一个true则表示强制刷新(清空缓存)
+				}
+				
+				var as = document.getElementById("as");
+				as.onclick = function(){
+					// 跳转到其他页面，作用和直接修改location一样
+					location.assign("https://www.baidu.com")
+				}
+				
+				var rep = document.getElementById("rep");
+				rep.onclick = function(){
+					// 跳转到其他页面
+					// 但是不能回退
+					location.replace("https://www.baidu.com");
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<button type="button" id="lk">点我啊</button>
+		<br>
+		<button type="button" id="bd">点我啊</button>
+		<br>
+		<button type="button" id="re">点我啊</button>
+		<br>
+		<button type="button" id="as">点我啊</button>
+		<br>
+		<button type="button" id="rep">点我啊</button>
+	</body>
+</html>

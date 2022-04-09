@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function(){
+
+            // 获取body标签
+            // 直接获取
+            // var ss = document.getElementsByTagName("body")[0];
+            // 使用doucument中的标签
+            var ss = document.body;
+            // console.log(ss);
+
+            // html根标签
+            var de = document.documentElement;
+            // console.log(de);
+
+            // 页面中的所有元素
+            var all = document.all;
+            // var all = document.getElementsByTagName("*");
+            // console.log(all);
+
+            // 根据class属性查询
+            // 这个方法不兼容老浏览器(IE8及以下)
+            var cll = document.getElementsByClassName("kkk");
+            // console.log(cll[0].innerHTML);
+
+
+            // 获取一个class下的div的方法，类似css的选择器
+            // 用css的选择器作为参数
+            var mao = document.querySelector(".nn div");
+            // console.log(mao);
+            // className不支持可以使用querySelector来代替
+            // 但是这个方法只能返回唯一的一个元素,满足的有多个，只会返回第一个
+            // 多个请使用下面的方法
+            var baise = document.querySelectorAll(".nn div")
+            // console.log(baise);
+            // 返回的是一个类数组
+            // 即使只有一个返回，也是以类数组的形式存在
+        }
+    </script>
+</head>
+<body>
+    <p class="kkk">我去</p>
+    <div class="nn">
+        <div>
+            <button class="bniuen">kd</button>
+        </div>
+        <div>
+            <button class="bniuen">kdd</button>
+        </div>
+        <div>
+            <button class="bniuen">kddd</button>
+        </div>
+    </div>
+</body>
+</html>

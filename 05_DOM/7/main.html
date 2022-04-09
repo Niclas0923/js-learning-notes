@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+    <style>
+
+        body{
+            background-color: rgb(56, 56, 56);
+        }
+
+        #boxs{
+            width: 300px;
+            height: 200px;
+            background-color: darkorange;   
+            margin: 30px auto;
+            border-radius: 15px;
+        }
+
+    </style>
+    <script>
+        window.onload = function(){
+
+            // 修改样式
+            var ss = document.getElementById("boxs");
+            var ssq = document.getElementById("mao");
+            ssq.onclick = function(){
+                ss.style.height = "400px";
+                ss.style.width = "250px";
+                ss.style.backgroundColor = "deepskyblue";
+            }
+            ssq.ondblclick = function(){
+                ss.style.height = "200px";
+                ss.style.width = "300px";
+                ss.style.backgroundColor= "darkorange";
+            }
+            //  读取样式
+            // 但是这种方法只能获取到通过这种方法更改或者直接写在标签内的样式
+            var xian = document.getElementById("xian");
+            xian.onclick = function(){
+                var a = ss.style.width;
+                var b = ss.style.height;
+                alert("x = "+a+"\n"+"y = "+b);
+            }
+
+            // 可以直接读取css样式的方式
+            var qiu = document.getElementById("qiu");
+            qiu.onclick = function(){
+                var a = ss.currentStyle.width;
+                alert("x = "+a);
+            }
+            // 这个函数只有IE浏览器支持
+
+
+            // 所以使用这个函数，输入是对象和伪对象（一般为null）
+            // 如果没有设置对象的值，会获取到一个真实的值，而不是auto
+            var pai = document.getElementById("pai");
+            pai.onclick = function(){
+                var a = getComputedStyle(ss,null);
+                alert("x = "+a.width+"\n"+"y = "+a.height);
+            }
+            // 这个除了IE的某些特殊版本（8），都支持
+
+
+            // 为了兼容所有浏览器，自己设置一个函数
+            function getStyle(obj,name){ 
+                if(window.getComputedStyle){
+                    return getComputedStyle(obj,null)[name];
+                }else{
+                    return obj.currentStyle[name];
+                }
+            }
+
+            // 测试
+            var le = document.getElementById("le");
+            le.onclick = function(){
+                alert(getStyle(ss,"width"));
+            }
+
+        }
+    </script>
+</head>
+
+<body>
+
+    <button id="mao">点我一下啊！！1</button>
+    <button id="xian">点我一下啊！！2</button>
+    <button id="qiu">点我一下啊！！3</button>
+    <button id="pai">点我一下啊！！4</button>
+    <button id="le">点我一下啊！！5</button>
+
+    <div id="boxs">
+
+    </div>  
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Div with mouse</title>
+    <style>
+        #quan{
+            width: 40px;
+            height: 40px;
+            background-color: red;
+            position: absolute;
+        }
+        body{
+            height: 1000px;
+            /* background-color: blue; */
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            var quan = document.getElementById("quan");
+            var body = document.body;
+            // document.onmousemove = function(event){
+            //     event = event || window.event ;
+            //     var a = quan.offsetWidth;
+            //     var b = quan.offsetHeight;
+            //     // var x = event.clientX;
+            //     var x = event.pageX;            // 这个属性IE8照样还是不支持。。。。
+            //     // var y = event.clientY;
+            //     var y = event.pageY;
+            //     // quan.offsetLeft = x - a;
+            //     // quan.offsetTop = y - b;
+            //     quan.style.left = (x - a/2)+"px";
+            //     quan.style.top = (y - b/2)+"px";
+
+            // }
+
+            document.onmousemove = function(event){
+                // chrom里面认为滚动条时body的，但是IE等不这么认为，认为是html的
+                var st = document.body.scrollTop || document.documentElement.scrollTop;
+                var lt = document.body.scrollLeft || document.documentElement.scrollLeft;
+                event = event || window.event ;
+                var a = quan.offsetWidth;
+                var b = quan.offsetHeight;
+                var x = event.clientX;
+                var y = event.clientY;
+                quan.style.left = (x + lt - a/2)+"px";
+                quan.style.top = (y + st - b/2)+"px";
+                
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <div id="quan"></div>
+</body>
+</html> 

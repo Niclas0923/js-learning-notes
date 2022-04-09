@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <style>
+        #a{
+            width: 400px;
+            height: 300px;
+            border: 1px solid black;
+            margin: 30px auto;
+        }
+
+        #b{
+            width: 400px;
+            height: 60px;
+            border: 1px solid black;
+            margin: auto;
+        }
+    </style>
+
+    <script>
+        window.onload = function(){
+
+            // 目的是鼠标在a中移动时，b中显示坐标
+            var a = document.getElementById("a");
+            var b = document.getElementById("b");
+
+            // onmousemove会在鼠标移动时触发
+            // event中封装了一些信息，比如：鼠标坐标，键盘输入，滚轮滚动等      
+
+            // a.onmousemove =function(event){
+
+            //     // IE8及其以下浏览器会报错
+            //     // 在IE8及其以下浏览器中event作为window的属性存在
+            //     var x = event.clientX;
+            //     var m = a.offsetLeft;
+            //     x -= m ;
+            //     var y = event.clientY;
+            //     var n = a.offsetTop;
+            //     y -= n ;
+            //     b.innerHTML = ("x = "+x+" y = "+y);
+
+            // }
+
+            // 所以重写event
+            // function events(event){
+            //     if(event == undefined){
+            //         return window.event;
+            //     }else{
+            //         return event;
+            //     }
+            // }
+            // a.onmousemove =function(event){
+            // var x = events(event).clientX;
+            // var m = a.offsetLeft;
+            // x -= m ;
+            // var y = events(event).clientY;
+            // var n = a.offsetTop;
+            // y -= n ;
+            // b.innerHTML = ("x = "+x+" y = "+y);
+            // }
+
+
+            // 同样可以直接写判断式
+            a.onmousemove =function(event){
+                event = event || window.event;
+                var x = event.clientX;
+                var m = a.offsetLeft;
+                x -= m ;
+                var y = event.clientY;
+                var n = a.offsetTop;
+                y -= n ;
+                b.innerHTML = ("x = "+x+" y = "+y);
+            }
+
+            
+        }
+    </script>
+</head>
+<body>
+    <div id="a">
+
+    </div>
+
+    <div id="b">
+
+    </div>
+    
+</body>
+</html>

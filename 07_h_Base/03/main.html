@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        什么是对象？为什么用对象？
+            用于存放多个数据的容器
+            用于一一对应数据和类别等
+            方便数据处理和统计
+     -->
+    <!-- 
+        对象的组成
+            属性
+            方法(特殊的属性)
+     -->
+     <script>
+        var sss = {
+            name:"Tom",
+            age:18,
+            setName : function (naem) {
+                this.name = name;
+            }
+        }
+     </script>
+    <!-- 
+        访问属性内容的方法
+     -->
+    <script>
+        console.log(  sss.name    )         // Tom
+        console.log(  sss["age"]  )         // 18
+    </script>
+
+    <!-- 
+        什么情况下不能用“.”来访问元素内的数据？
+            属性名称中包含特殊字符
+                - 空格 等
+            变量名不确定的情况
+     -->
+    <script>
+        var maoxian = "name";
+        console.log(sss.maoxian);           // undefined
+        console.log(sss[maoxian]);          // Tom
+    </script>
+</body>
+</html>

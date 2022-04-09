@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			window.onload = function(){
+				// DOM对象，提供了一些浏览器的信息以供操作
+				// window
+				// 	网页全局对象
+				// navigator
+				// 	浏览器的部分信息
+				// location
+				// 	浏览器地址栏的信息，操作浏览器跳转
+				// history 
+				// 	历史记录，但是隐私问题，不能获取，只能获取前翻页，后翻页
+				// screen
+				// 	屏幕的信息，显示器的信息
+				
+				// 这些BOM对象都是window的属性，可以直接通过window对象来使用，也可以直接使用
+				
+				
+				// navigator可以用于识别浏览器
+				console.log(navigator.appName);
+				// Netscape大多数都是。。所以现在基本没用了
+				
+				// 所以使用useragent
+				var a = navigator.userAgent;
+				// 内置
+				// Mozilla/5.0 (Macintosh; Intel Mac OS X 12_3_0) AppleWebKit/537.36 (KHTML, like Gecko) QtWebEngine/5.12.10 Chrome/69.0.3497.128 Safari/537.36 HBuilderX
+				// chrome
+				// Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.83 Safari/537.36
+				// 火狐
+				// Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:98.0) Gecko/20100101 Firefox/98.0
+				// safari
+				// Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Safari/605.1.15
+				// edge
+				// Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36 Edge/16.16299
+				// IE10
+				// Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)
+				if(/firefox/i.test(a)){
+					alert("火狐");
+				}else if(/chrome/i.test(a)){
+					console.log("chrome");		// 一直给我弹，只好仍控制台了
+				}else if(/msie/i.test(a)){
+					alert("IE");
+				}else if("ActiveXObject" in window){			// 别的方法都不容易测试出结果，这个可以得到结果
+					alert("Edge");
+				}
+				
+				var len = document.getElementById("len");
+				len.onclick = function(){
+					alert(history.length);
+				}
+				
+				var fo = document.getElementById("fo");
+				fo.onclick = function(){
+					history.forward();
+				}
+				var go = document.getElementById("go");
+				go.onclick = function(){
+					// 1表示向后1个页面
+					// -1表示向前一个页面
+					history.go(1);
+				}
+			}
+		 </script>
+	</head>
+	<body>
+		<h1>测试1</h1>
+		<a href="test02.html">go02</a>
+		<br>
+		<button type="button" id="len">len</button>
+		<br>
+		<button type="button" id="fo">forward</button>
+		<br>
+		<button type="button" id="go">go</button>
+	</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #box1{
+            width: 300px;
+            height: 300px;
+            background-color: yellowgreen;
+        }
+        #box2{
+            width: 200px;
+            height: 200px;
+            background-color: yellow;
+        }
+        #box3{
+            width: 150px;
+            height: 150px;
+            background-color: deepskyblue;
+        }
+
+    </style>
+    <script>
+        window.onload = function(){
+
+            function diaoyong(obj,strnoOn,fun){
+                if(obj.addEventListener){
+                    obj.addEventListener(strnoOn,fun,false);
+                    // obj.addEventListener(strnoOn,fun,true);
+                }else{
+                    // this由调用函数决定
+                    obj.attachEvent("on"+strnoOn,function(){
+                        fun.call(obj)
+                    });
+                }
+            }
+
+
+            var b1 = document.getElementById("box1");
+            var b2 = document.getElementById("box2");
+            var b3 = document.getElementById("box3");
+
+
+            diaoyong(b1,"click",function(){
+                alert(1)
+            })
+            
+            diaoyong(b2,"click",function(){
+                alert(2)
+            })
+
+            diaoyong(b3,"click",function(){
+                alert(3)
+            })
+            // 当我点击box3的区域时，会相继触发上面全部的点击相应函数
+            // 函数的点击事件从box3传递到box2再传递到box1
+            // 如果再写body和html甚至document到点击相应函数
+            // 还会继续向上传递
+
+            // 事件的传播现在分为三个阶段
+            // 1 捕获阶段，由最外层元素向目标元素进行时间的捕获，但默认不执行
+            // 2 目标阶段，事件捕获到目标，执行目标
+            // 3 冒泡阶段，事件从目标阶段依次向祖先阶段执行
+
+            // 如果希望在捕获阶段就执行，可以把addEventListener的第三个属性设置为true
+            // 一般情况不用
+        }
+
+    </script>
+</head>
+<body>
+    <div id="box1">
+        <div id="box2">
+            <div id="box3">
+
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

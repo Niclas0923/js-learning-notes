@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color:rgb(36, 36, 36) ;
+        }
+        button{
+            display: inline-table;
+            width: 200pt;
+            height: 30pt;
+        }
+        .ll{
+            width: 200pt;
+            height: auto;
+            margin: 30pt auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- 对于对象的处理 
+        1   直接写在标签内
+    -->
+    <div class="ll">
+        <button ondblclick="alert('666')">我是一个按钮</button>
+    </div>
+    <!-- 
+        2   写在区块内
+     -->
+     <div class="ll">
+        <button id="pidd">我是一个按钮</button>
+     </div>
+    <script>
+        var sss = document.getElementById("pidd");
+        sss.ondblclick = function(){
+            alert("666");
+        } 
+    </script>
+</body>
+</html>

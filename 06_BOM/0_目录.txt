@@ -1,0 +1,7 @@
+1:	navigator	history
+
+2:	Location
+
+3:	定时器,定时器练习(test)移动练习(test1)延时调用(main2)
+
+4:	json

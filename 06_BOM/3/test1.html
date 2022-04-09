@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>main</title>
+		<style type="text/css">
+			#re{
+				width: 100px;
+				height: 100px;
+				background-color: red;
+				position: absolute;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload = function(){
+				
+				var speed = 30;
+				// 控制方向
+				var dir = 0 ;
+				var re = document.getElementById("re");
+				
+				// 开启一个定时器来控制速度,只控制移动，不控制方向
+				setInterval(function(){
+					// var a = event.keyCode;
+					console.log(dir)
+					switch(dir){
+						case 37:
+							re.style.left = re.offsetLeft - speed + "px";break;
+						case 38:
+							re.style.top = re.offsetTop - speed + "px";break;
+						case 39:
+							re.style.left = re.offsetLeft + speed + "px";break;
+						case 40:
+							re.style.top = re.offsetTop + speed + "px";break;
+						case 65:
+							re.style.left = re.offsetLeft - speed + "px";break;
+						case 87:
+							re.style.top = re.offsetTop - speed + "px";break;
+						case 68:
+							re.style.left = re.offsetLeft + speed + "px";break;
+						case 83:
+							re.style.top = re.offsetTop + speed + "px";break;
+					}
+				},30)
+				
+				
+					
+				document.onkeydown = function(event){
+					event = event || window.event;
+					
+					// 按下shift后加速
+					if(event.shiftKey){
+						speed = 50;
+					}else{
+						speed = 30;
+					}
+					dir = event.keyCode;
+				}
+				document.onkeyup = function(){
+					dir = 0;
+				}
+			}
+		</script> 
+	</head>
+	<body>
+		<div id="re">
+			
+		</div>
+	</body> 
+</html>

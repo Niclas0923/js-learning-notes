@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>添加删除记录练习</title>
+<link rel="stylesheet" href="css.css">
+<script type="text/javascript">
+	
+	window.onload = function(){
+		// 点击函数
+		onClick = function(str,fun){
+			var ss = document.getElementById(str);
+			ss.onclick = fun;
+		}
+		
+		onClick("addEmpButton",function(){
+			// 找到目标项
+			var tb = document.getElementById("employeeTable");
+			var aa1 = document.getElementsByName("empName");
+			var name = aa1[0].value;
+			var aa2 = document.getElementsByName("email");
+			var email = aa2[0].value;
+			var aa3 = document.getElementsByName("salary");
+			var salary = aa3[0].value;
+			// 新建
+			var tr = document.createElement("tr");
+			var td1 = document.createElement("td");
+			var td2 = document.createElement("td");
+			var td3 = document.createElement("td");
+			var td4 = document.createElement("td");
+			var a = document.createElement("a");
+			a.href = "javascript:;";
+			a.innerHTML = "Delete";
+			// 给超链接添加点击效果
+			a.onclick = function(){
+				var mm = this.parentNode.parentNode;
+				var mmq = confirm("确定要删除吗？");
+				if (mmq){
+					mm.parentNode.removeChild(mm);
+				}
+			}
+			// 赋值
+			td1.innerHTML = name;td2.innerHTML = email;td3.innerHTML = salary;
+			// 嵌套
+			td4.appendChild(a);
+			tr.appendChild(td1);tr.appendChild(td2);
+			tr.appendChild(td3);tr.appendChild(td4);
+			tb.appendChild(tr);
+			// 清空
+			aa1[0].value = "";aa2[0].value = "";aa3[0].value = "";
+		})
+	
+		// 给超链接添加点击效果
+		var alla = document.getElementsByTagName("a");
+		for (var i=0;i<alla.length;i++){
+			alla[i].onclick = function(){
+				var mm = this.parentNode.parentNode;
+				var mmq = confirm("确定要删除吗？");
+				if (mmq){
+					mm.parentNode.removeChild(mm);
+				}
+			}
+		}
+		
+	};
+
+	
+</script>
+</head>
+<body>
+	<div id="maoxian">
+
+	<table id="employeeTable">
+		<tr>
+			<th>Name</th>
+			<th>Email</th>
+			<th>Salary</th>
+			<th>&nbsp;</th>
+		</tr>
+		<tr>
+			<td>Tom</td>
+			<td>tom@tom.com</td>
+			<td>5000</td>
+			<td><a href="javascript:;">Delete</a></td>
+		</tr>
+		<tr>
+			<td>Jerry</td>
+			<td>jerry@sohu.com</td>
+			<td>8000</td>
+			<td><a href="javascript:;">Delete</a></td>
+		</tr>
+		<tr>
+			<td>Bob</td>
+			<td>bob@tom.com</td>
+			<td>10000</td>
+			<td><a href="javascript:;">Delete</a></td>
+		</tr>
+	</table>
+
+	<div id="formDiv">
+	
+		<h4>添加新员工</h4>
+
+		<table>
+			<tr>
+				<td class="word">name: </td>
+				<td class="inp">
+					<input type="text" name="empName" id="empName" />
+				</td>
+			</tr>
+			<tr>
+				<td class="word">email: </td>
+				<td class="inp">
+					<input type="text" name="email" id="email" />
+				</td>
+			</tr>
+			<tr>
+				<td class="word">salary: </td>
+				<td class="inp">
+					<input type="text" name="salary" id="salary" />
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+					<button id="addEmpButton" value="abc">
+						Submit
+					</button>
+				</td>
+			</tr>
+		</table>
+
+	</div>
+	</div>
+</body>
+</html>

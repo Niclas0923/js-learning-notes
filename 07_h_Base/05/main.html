@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        IIFE
+    -->
+    <script>
+        // 匿名函数自调用
+        (function(){
+            console.log("cmj")
+        })()
+    </script>
+
+    <!-- 
+        作用
+            不会产生全局变量污染window对象
+     -->
+
+    <script>
+        (function(){
+            var a = 12;
+            console.log(a+2);
+        })()
+    </script>
+
+    <!-- 
+        隐藏实现，外部程序无法看见
+     -->
+
+    <script>
+        (function(){
+            var a = 1;
+            function test(){
+                console.log(++a);
+            }
+            window.$ = function(){      // 向外暴露一个全局函数
+                return {
+                    test:test
+                }
+            }
+        })()
+
+        $().test()      // $ 是一个函数由上面定义返回一个对象，其中有一个名称是一个函数，向外输出一个++a
+    </script>
+
+    <!-- 
+        并且可以用它来编写js模块
+     -->
+</body>
+</html>

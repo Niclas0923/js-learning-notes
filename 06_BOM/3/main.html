@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>f</title>
+		<script type="text/javascript">
+			window.onload = function(){
+				var h1 = document.getElementById("h1");
+				var ss = 0
+				// setInterval() 定时调用
+				// 每隔一段时间执行一次
+				// 参数:
+				// 		1	回调函数
+				//		2	调用间隔，单位是毫秒
+				// 返回值:
+				// 		这个数字类型的值是这个时间计时器的标识
+				var o = setInterval(function(){
+					h1.innerHTML = ss++;
+					// clearInterval()可以用来关闭计时器
+					// 输入值为开始的标识
+					if(ss == 100){
+						clearInterval(o);
+					}
+				},100);
+				
+			}
+		</script>
+	</head>
+	<body>
+		<h1 id="h1"></h1>
+	</body>
+</html>

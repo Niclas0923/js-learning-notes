@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>d</title>
+		<script type="text/javascript">
+			window.onload = function(){
+				
+				// 延时调用setTimeout()
+				// 不马上执行。而是隔一段时间之后再执行
+				// 只执行一次
+				var i = 0;
+				var o = setTimeout(function(){
+					console.log(i);
+				},3000)
+				// 停止调用
+				clearTimeout(o);
+			}
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

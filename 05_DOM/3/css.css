@@ -1,0 +1,14 @@
+
+body{
+    background-color:rgb(36, 36, 36) ;
+}
+.ddddd{
+    width: 200pt;
+    height: 30pt;
+    background-color: dodgerblue;
+}
+div{
+    width: 200pt;
+    height: 30pt;
+    margin: 30pt auto;
+}
