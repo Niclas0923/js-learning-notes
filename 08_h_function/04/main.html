@@ -56,17 +56,59 @@
     <script>
         function fn1(){
             var a = 2
+            var b = "abc"
             function fn2( ) { 
                 console.log(a)
             }
-            fu2() 
+            fn2()
         }
+        fn1()
     </script>
+
+    <!--
+        闭包是在内部函数中的一个对象，里面存放的是内部函数调用的外部函数的变量
+            当外部函数被调用时，闭包就会形成，无需调用内部函数就会出现
+            而不调用就不会出现
+    -->
+
+    <!--
+        常见的闭包
+            将函数作为另一个函数的返回值
+    -->
+    <script>
+        function fn1() {
+            var a = 2
+            function fn2() {
+                a++
+                console.log(a)
+            }
+            return fn2
+        }
+
+        var f = fn1()
+        f()     // 3
+        f()     // 4
+
+        // a 在调用赋值的时候产生闭包存在fn2内给了f
+        // 之后调用f就累加一次a，此时a就一直存在f的闭包内，不会释放内存
+        // 其中外部函数调用几次，内部闭包就产生几次
+    </script>给另一个函数
+
+    <!--
+        将一个函数作为实参传递
+    -->
 
     <script>
-        
+        function showdd(msg,time) {
+            setTimeout(() => {
+                console.log(msg)
+            }, time);
+        }
+        showdd(123,3000)
     </script>
 
-
+    <!--
+        闭包的作用
+    -->
 </body>
 </html>
