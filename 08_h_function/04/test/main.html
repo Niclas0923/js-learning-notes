@@ -16,13 +16,12 @@
             模块使用者只需要通过模块暴露的对象调用方法来实现相应功能
     -->
     <script src="01.js"></script>
+    <!-- 第一种方式  -->
     <script>
-        // 第一种方法
-        // 调用函数之后再运行
         var md1 = module1()
         md1.big()
     </script>
-
+    <!--  第二种方式  -->
     <script src="02.js"></script>
     <script>
         md2.small()
