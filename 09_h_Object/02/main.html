@@ -8,6 +8,110 @@
 	</style>
 </head>
 <body>
+	<!--
+		方式一
+		原型链继承
+		
+		1 过程
+			定义父类型构造函数
+			给父类型的原型添加方法
+			定义子类型的构造函数
+			创建父类型的对象赋值给子类型的原型
+			将子类型原型的构造属性设置为字类型
+			给子类型原型添加方法
+			创建子类型的对象：可以调用父类型的方法
+		2 关键
+			字类型的原型为父类型的一个实例对象
+	-->
 	
+	<script>
+		// 父类型创建
+		function Supper(){
+			this.supProp = "ssss"
+		}
+		Supper.prototype.showIn1 = function(){
+			console.log(this.supProp)
+		}
+		
+		// 子类型创建
+		function Sun(){
+			this.sunProp = "dddd"
+		}
+		Sun.prototype.showIn2 = function(){
+			console.log(this.sunProp)
+		}
+		
+		// 让字类型的原型为父类型的一个实例对象
+		// 这样就可以让子类型的实例访问到父类型的原型内的函数了
+		Sun.prototype = new Supper()
+
+		var sun = new Sun()
+		sun.showIn1()			// ssss
+		
+		console.log(sun.constructor)		// Supper	然而我希望它为正常的Sun
+		
+		Sun.prototype.constructor = Sun
+		// 再这样反指就可以了
+		console.log(sun.constructor)		// Sun
+	</script>
+	
+	<!--
+		方式二
+		借用构造函数（假的）
+		方法
+			定义父类型构造函数
+			定义子类型构造函数
+			在子类型构造函数中调用父类型构造
+		关键
+			在子类型构造函数中通用call( )调用父类型构造函数
+	-->
+	
+	<script>
+		function Father(name,age){
+			this.name = name,
+			this.age = age
+		}
+		
+		function Son(name,age,price){
+			Father.call(this,name,age)	// 相当于 this.Father(name,age)
+			this.price = price
+		}
+		
+		var ss = new Son("tom",20,2000)
+		console.log(ss.name,ss.age,ss.price)
+		// 可以输出，但没有继承
+	</script>
+	
+	<!--
+		第三种方式
+		组合继承，原型链和调用都用
+	-->
+	
+	<script>
+		function Person(name,age){
+			this.name = name,
+			this.age = age
+		}
+		Person.prototype.setName = function(name){
+			this.name = name
+		}
+		function Student(name,age,price){
+			Person.call(this,name,age)		// 从父元素得到属性
+			this.price = price
+		}
+		Student.prototype.setPrice = function(price){
+			this.price = price
+		}
+
+		Student.prototype = new Person()		// 链接到父元素
+		Student.prototype.constructor = Student	// 修正constructor
+
+		// 测试
+		var ss = new Student("tom",20,2000)
+		ss.setName("mao")
+		console.log(ss.name)		// mao
+		ss.setPrice(1222)
+		console.log(ss.price)		// 1222
+	</script>
 </body>
 </html>
