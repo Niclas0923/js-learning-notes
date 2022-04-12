@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body{background-color: black;}
+	</style>
+</head>
+<body>
+	<!--
+		方式一
+			先创建空Object对象，再动态添加属性/方法
+			适用场景：其实时不确定对象内部数据
+			问题：语句复杂
+	-->
+	
+	<script>
+		var p = new Object()
+		p.name = "tom"
+		p.age = 12
+		p.setName = function(name){
+			this.name = name
+		}
+		// 测试
+		p.setName("zhr")
+		console.log(p.name)
+	</script>
+	
+	<!--
+		方式二
+			对象字面量模式
+			使用{}创建对象，同时指定属性和方法
+			适用场景：起始时对象内部数据是确定的
+			问题：如果创建多个对象，有重复代码
+	-->
+	
+	<script>
+		var q = {
+			name:"tom",
+			age:12,
+			setName:function(name){
+				this.name = name
+			}
+		}
+		
+		q.setName("zhr")
+		console.log(q.name)
+	</script>
+	
+	<!--
+		方式三
+		通过函数动态创建对象并返回(也叫工厂函数)
+		适用场景：需要创建多个对象
+		问题：对象都是Object类型
+	-->
+	
+	<script>
+		function fun(name,age){
+			var obj = {
+				name:name,
+				age:age,
+				setName:function(name){
+					this.name = name
+				},
+			}
+			return obj
+		}
+		var pq = fun("tom",12)
+		console.log(pq.name)
+	</script>
+	
+	<!--
+		构造函数
+		构造函数之后new子对象
+		适用场景：需要确定类型，并且创建多个
+		问题：每个对象都有相同的数据，浪费内存
+	-->
+	
+	<script>
+		function Person(name,age){
+			this.name = name,
+			this.age = age,
+			this.setName = function(name){
+				this.name = name
+			}
+		}
+		var ss = new Person("tom",12)
+		console.log(ss.name+" "+ss.age)
+		console.log(ss instanceof Person)		// true
+		console.log(ss instanceof Object)		// true
+		// 但是这种方法会大量浪费内存，每个对象都有重复的函数，数量一大就浪费大量空间
+	</script>
+	
+	<!--
+		构造函数和原型对象一起使用
+		自定义构造函数，属性在函数中初始化，方法添加到原型上
+		适用场景：创建多个类型确定的对象，并且减少内存浪费
+	-->
+	
+	<script>
+		function Student(name,age){
+			this.name = name,
+			this.age = age
+		}
+		Student.prototype.setName = function(name){
+			this.name = name
+		}
+		
+		var sss = new Student("tom",12)
+		sss.setName("mao")
+		console.log(sss.name)
+	</script>
+</body>
+</html>
