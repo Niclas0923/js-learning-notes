@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body{background-color: black;}
+    </style>
+</head>
+<body>
+    <!--
+        如何证明js是单线程的？
+            setTimeout()的回调函数是在主线程中执行的
+            定时器回调函数只有在运行栈中的代码全部执行完后才可能执行
+        为什么js是单线程而不是多线程？
+            与用途有关
+            作为浏览器脚本语言，js的用途是与用户交互以及操控DOM
+            这决定了它只能单线程，否则会带来很复杂的同步问题
+    -->
+
+    <script>
+        setTimeout(() => {
+            console.log("timeout 2222")
+        }, 2000);
+        setTimeout(() => {
+            console.log("timeout 1")
+        }, 1000);
+        function fn(){
+            console.log("fn")
+        }
+        setTimeout(() => {
+            console.log("timeout 000")
+        }, 0);
+        fn()
+        console.log("ddd之前")
+        alert("ddd")        // 会暂停当前主线程的执行，同时暂停了计时
+        console.log("ddd之后")
+    </script>
+
+    <!--
+        代码分类
+            初始化代码
+            回调代码
+                回调函数内的代码 
+    -->
+</body>
+</html>
