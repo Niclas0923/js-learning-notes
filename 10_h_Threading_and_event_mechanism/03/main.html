@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body{background-color: black;}
+    </style>
+</head>
+<body>
+    <!--
+        H5 规范提供了js分线程的实现
+        相关api
+            Worker  构造函数，加载分线程执行的js文件
+            Worker.prototype.onmessage  用于接收另一个线程的回调函数
+            Worker.prototype.postMessage    向分线程发送消息
+        不足
+            不是每个浏览器都支持
+            Worker内代码不能操作DOM
+            不能跨域加载js
+    -->
+    
+    <input type="text" id="inp" placeholder="数值">
+    <button id="btn">计算</button>
+    <script>
+        window.onload = function(){
+            
+
+            var input = document.getElementById("inp")
+            var btn = document.getElementById("btn")
+            
+            btn.onclick = function(){
+                var suan = new Worker("js.js")
+                
+                suan.onmessage = function(event){
+                    console.log("这是主线程接收的分线程返回的数据"+event.data)
+                    alert(event.data)
+                }
+                // 传递数据
+                suan.postMessage(input.value)
+            }
+        
+
+        }
+    </script>
+</body>
+</html>
