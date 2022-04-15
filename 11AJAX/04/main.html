@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        /* body{
+            background-color: black;
+        } */
+        #ll{
+            width: 200px;
+            height: 100px;
+            border: solid 1px black;
+        }
+    </style>
+</head>
+<body>
+    <button id="btn">点击返回</button> 
+    <div id="ll"></div>
+
+    <script>
+        window.onload = function(){
+            var btn = document.getElementById("btn")
+            btn.onclick = function(){
+                // 1.创建对象
+                const xhr = new XMLHttpRequest()
+                // 2.初始化，设置请求方法和url
+                xhr.open('GET','http://127.0.0.1:8000/js')
+                // 3.发送
+                xhr.send()
+                // 4.事件绑定
+                // 处理服务端返回的结果
+                // readystate是xhr的一个属性表示状态
+                // 这个属性有五个值 0 1 2 3 4
+                // 0表示未初始化    1表示open调用完毕
+                // 2表示send调用完毕  3表示服务端返回了部分结果
+                // 4表示服务端返回了所有结果
+                xhr.onreadystatechange = function(){
+                    // 处理服务端返回的结果
+                    if(xhr.readyState === 4){
+                        // 判断相应状态码 200 404 403 500
+                        if(xhr.status >= 200 && xhr.status < 300){
+                            // 处理结果 行 头 空行 体
+                            console.log(xhr.status) // 状态码
+                            console.log(xhr.statusText) // 状态字符串
+                            console.log(xhr.getAllResponseHeaders()) // 所有相应头
+                            console.log(xhr.response)   // 响应体
+                            document.getElementById("ll").innerHTML = xhr.response
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
