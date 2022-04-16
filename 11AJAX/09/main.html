@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: black;
+        }
+        #div1{
+            width: 200px;
+            height: 100px;
+            border: solid 1px white;
+            color: white;
+            margin: 150px auto;
+        }
+    </style>
+</head>
+<body>
+    <button id="btn">点击获取</button>
+    <div id="div1">
+
+    </div>
+    <script>
+        window.onload = function(){
+            var btn = document.getElementById("btn")
+            var div1 = document.getElementById("div1")
+            btn.onclick = function(){
+                // 创建对象
+                const xhr = new XMLHttpRequest()
+                // 设置响应体数据类型
+                // xhr.responseType = 'json'
+                // 超时设置
+                xhr.timeout = 1500
+                // 超时回调函数
+                xhr.ontimeout = function(){
+                    alert("请求超时！！")
+                }
+                // 网络异常
+                 xhr.onerror = function(){
+                    alert("网络连接失败，请检查互联网连接")
+                 }
+                // 初始化，设置请求 
+                xhr.open('GET','http://127.0.0.1:8000/delay')
+                // 发送
+                xhr.send()
+                // 事件绑定
+                xhr.onreadystatechange = function(){
+                    // 需要进行改进
+                    
+                    if(xhr.readyState === 4){
+                        if(xhr.status >= 200 && xhr.status < 300){
+                            div1.innerHTML = xhr.response
+                        }
+                    }
+                }
+
+            }
+        }
+    </script>
+</body>
+</html>
