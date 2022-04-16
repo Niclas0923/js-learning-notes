@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: black;
+        }
+        #div1{
+            width: 200px;
+            height: 100px;
+            border: solid 1px white;
+            color: white;
+            margin: 150px auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1">
+
+    </div>
+    <script>
+        window.onload = function(){
+            var div1 = document.getElementById("div1")
+            div1.onmouseover = function(){
+                // 创建对象
+                const xhr = new XMLHttpRequest()
+                // 初始化，设置请求
+                xhr.open('POST','http://127.0.0.1:8000/js')
+                // 发送
+                xhr.send('a=100&b=200')     // 这里可以传任意字符串，可以传JSON
+                // 事件绑定
+                xhr.onreadystatechange = function(){
+                    // 处理服务端返回的结果
+                    if(xhr.readyState === 4){
+                        if(xhr.status >= 200 && xhr.status < 300){
+                            div1.innerHTML = xhr.response
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
