@@ -20,7 +20,7 @@ function jiahe(a,b){
 console.log(jiahe(10,11))        // 21
 
 // 立即执行函数
-(function(){
+;(function(){
     alert("我是一个匿名函数～～～")
-})();
+})()
 
