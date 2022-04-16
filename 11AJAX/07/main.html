@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: black;
+        }
+        #div1{
+            width: 200px;
+            height: 100px;
+            border: solid 1px white;
+            color: white;
+            margin: 150px auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1">
+
+    </div>
+    <script>
+        window.onload = function(){
+            var div1 = document.getElementById("div1")
+            document.onkeydown = function(){
+                // 创建对象
+                const xhr = new XMLHttpRequest()
+                // 设置响应体数据类型
+                xhr.responseType = 'json'
+                // 初始化，设置请求 
+                xhr.open('GET','http://127.0.0.1:8000/json-js')
+                // 发送
+                xhr.send()
+                // 事件绑定
+                xhr.onreadystatechange = function(){
+                    // 处理服务端返回的结果
+                    if(xhr.readyState === 4){
+                        if(xhr.status >= 200 && xhr.status < 300){
+                            // 手动转换
+                            // const ss = JSON.parse(xhr.response)
+                            // div1.innerHTML = "name : "+ss.name+"  age : "+ss.age
+                            // 自动转换
+                            // 在open前设置响应体数据类型
+                            div1.innerHTML = "name : "+xhr.response.name+"  age : "+xhr.response.age
+                            // 通过nodemon运行js文件可以修改后直接自己重启服务器
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
