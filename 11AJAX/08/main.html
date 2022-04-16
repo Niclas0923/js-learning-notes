@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: black;
+        }
+        #div1{
+            width: 200px;
+            height: 100px;
+            border: solid 1px white;
+            color: white;
+            margin: 150px auto;
+        }
+    </style>
+</head>
+<body>
+    <button id="btn">点击获取</button>
+    <div id="div1">
+
+    </div>
+    <script>
+        window.onload = function(){
+            var btn = document.getElementById("btn")
+            var div1 = document.getElementById("div1")
+            btn.onclick = function(){
+                // 创建对象
+                const xhr = new XMLHttpRequest()
+                // 设置响应体数据类型
+                // xhr.responseType = 'json'
+                // 初始化，设置请求 
+                // 增加一个时间戳，浏览器会认为每次访问都不一样，每次都返回
+                xhr.open('GET','http://127.0.0.1:8000/ie?='+Data.now())
+                // 发送
+                xhr.send()
+                // 事件绑定
+                xhr.onreadystatechange = function(){
+                    // ie会对AJAX的请求进行一个缓存，导致需要快速刷新的服务器数据不能正常运行
+                    // 需要进行改进
+                    
+                    if(xhr.readyState === 4){
+                        if(xhr.status >= 200 && xhr.status < 300){
+                            div1.innerHTML = xhr.response
+                        }
+                    }
+                }
+
+            }
+        }
+    </script>
+</body>
+</html>
