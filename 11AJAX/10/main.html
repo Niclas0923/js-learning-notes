@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        /* body{
+            background-color: black;
+        } */
+        #div1{
+            width: 200px;
+            height: 100px;
+            border: solid 1px black;
+            color: black;
+            margin: 150px auto;
+        }
+    </style>
+</head>
+<body>
+    <button>点击获取</button>
+    <button>点击取消</button>
+    <div id="div1">
+
+    </div>
+    <script>
+        let x
+        window.onload = function(){
+            var btns = document.getElementsByTagName("button")
+            var div1 = document.getElementById("div1")
+            btns[0].onclick = function(){
+                // 创建对象
+                xhr = new XMLHttpRequest()
+                // 初始化，设置请求 
+                xhr.open('GET','http://127.0.0.1:8000/delay')
+                // 发送
+                xhr.send()
+                // 事件绑定
+                xhr.onreadystatechange = function(){
+                    // 需要进行改进
+                    
+                    if(xhr.readyState === 4){
+                        if(xhr.status >= 200 && xhr.status < 300){
+                            div1.innerHTML = xhr.response
+                        }
+                    }
+                }
+            }
+            btns[1].onclick = function(){
+                xhr.abort()
+            }
+        }
+    </script>
+</body>
+</html>
