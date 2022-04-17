@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.js"></script>
+    <style>
+        body{background-color: black;color: white;}
+    </style>
+</head>
+<body>
+    <!--
+        工具方法
+    -->
+    <script>
+        // $.each()             遍历数组或对象中的数据
+        var obj = {
+            name:"tom",
+            setName:function(name){
+                this.name = name
+            }
+        }
+        $.each(obj,function(i,n){
+            console.log(i,n);
+        })   
+        // $.trim()             去除字符串两边的空格
+        var s = '           ---ddd---              '
+        console.log($.trim(s))
+        // $.type(obj)          得到数据的类型
+        console.log($.type(s))      // string
+        console.log($.type(obj))    // object
+        // $.isArray(obj)       判断是否为数组
+        var mm = [12,true]
+        console.log($.isArray(s),$.isArray(mm))     // false true
+        // $.isFunction(obj)    判断是否为函数
+        console.log($.isFunction(obj.setName),$.isFunction(s))  // true false
+        // $.parseJSON(json)    解析json字符串转换为js对象/数组
+        var ss = JSON.stringify(obj)
+        console.log(ss)                 // 函数不能转
+        console.log(JSON.parse(ss))
+        console.log($.parseJSON(ss))  
+        
+    </script>
+
+    <!--
+        属性读写
+    -->
+    <div id="div1" class="box" title="one">class为box的div1</div>
+    <div id="div2" class="box" title="two">class为box的div2</div>
+    <div id="div3">div3</div>
+    <span class="box">class为box的span</span><br>
+    <ul>
+        <li>AAAAA</li>
+        <li title="hello">BBBBB</li>
+        <li class="box">CCCCC</li>
+        <li title="hello">DDDDD</li>
+        <li title="two"><span>BBBBB</span></li>
+    </ul>
+    <input type="text" name="username" value="dddd"><br>
+    <input type="checkbox">
+    <input type="checkbox"><br>
+    <button>选中</button>
+    <button>不选中</button>
+
+    <script>
+        // 1    读取第一个div的title属性
+        console.log($('div:first').attr('title'))       // one
+        // 2    给所有div设置name属性(value随意)
+        $('div').attr('name',"zhr") 
+        // 3    移除所有div的title属性
+        $('div').removeAttr('title')
+        // 4    给所有div设置class属性为ssss
+        $('div').attr('class','ssss')
+        // 5    给所有div添加class属性sss
+        $('div').addClass("sss")
+        // 6    移除所有div的ssss属性
+        $('div').removeClass("ssss")
+        // 7    得到最后一个li的标签提文本
+        console.log($('li:last').html())
+        // 8    设置最后一个li的标签体为<h1>vvvvvvv</h1>
+        $('li:first').html("<h1>vvvvvvv</h1>")
+        // 9    得到输入框中的value值
+        console.log( $(':text').val())
+        // 10   将输入框的值设为ssssssoo
+        $(':text').val("ssssssoo")
+        // 11   点击全选按钮实现全选
+        $('button:first').click(function(){
+            $(':checkbox').attr('checked',true)
+        })
+        // 12   点击全不选实现全部取消
+        $('button:last').click(function(){
+            $(':checkbox').attr('checked',false)
+        })
+    </script>
+    <!--
+        attr()  用来操作直接数据(现在布尔值好像也可以了)
+        prop()  专门操作属性值为布尔值
+    -->
+</body>
+</html>
