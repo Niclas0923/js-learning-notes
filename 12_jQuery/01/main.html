@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body{background-color: black;}
+        div{color: white;}
+        p{display: inline;}
+    </style>
+</head>
+<body>
+    <!--
+        jq是一个优秀的js函数库
+        内封装的是Bom和Dom
+        
+        链式调用，读写合一 
+    -->
+
+    <!--
+        案例，点击按钮提示输入的文本
+    -->
+    <div>
+        <p>用户名:</p>
+        <input type="text" id="text">
+        <button id="btn1">原生</button>
+        <button id="btn2">jQ</button>
+    </div>
+
+    <!-- 原生 -->
+    <script>
+        window.onload = function(){
+            document.getElementById("btn1").onclick = function(){
+                // alert(document.getElementById("text").value)
+                console.log(document.getElementById("text").value)
+            }
+        }
+    </script>
+
+
+    <!-- jQuery -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.js"></script>
+    <!-- 远程引用可以减少服务器的压力，但是必须联网使用 -->
+    <script>
+        // 绑定文档加载完成的监听
+         $(function(){              // 核心函数 $
+              $('#btn2').click(function(){      // 核心对象 用$()返回的对象
+                // alert($("#test").val())
+                console.log($("#text").val())
+              })
+         })
+    </script>
+     
+
+    <!-- 关于核心函数和对象 -->
+    <script>
+        $(function(){
+            // 核心函数
+            console.log($ , typeof $)       // function
+            // 核心对象 
+            console.log($() instanceof Object)      // true
+            console.log($() instanceof $)           // true
+        })
+    </script>
+    <!--
+        核心函数既可以当作函数调用，也可以当作对象调用
+
+        函数
+            参数为函数
+                当DOM加载完成后，执行此回调函数
+            参数为选择器字符串
+                查找所有匹配的标签，并将它们封装成jQuery对象
+            参数为Dom对象
+                将dom封装为jQuery对象
+            参数为html标签字符串(很少用到)
+                创建标签对象并封装为jQuery对象
+    -->
+    <script>
+        // 回调函数
+        $(function(){
+            // 选择器字符串
+            console.log($("#text"))
+            // init [input#text, context: document, selector: '#text']
+            // Dom对象
+            console.log($(document.getElementById("text")))
+            // init [input#text, context: input#text]
+            {
+                // 比较测试
+                console.log($(document.getElementById("text")) === console.log($("#text")))
+                // false        不同方式获取的，对象存的是内存地址，所以不同，但控制是都可以控制的
+            }
+        })
+    </script>
+
+    <div id="div2">
+        <input type="text" id="text2">
+        <button id="btn3">点击增加输入框</button>
+    </div>
+
+    <script>
+        $(function(){
+            $("#btn3").click(function(){
+                // html标签字符串
+                $("<input type='text'>").appendTo("#div2")
+                // A.appendTo(B)    把A对象添加到B对象内
+                // A.append(B)      把B对象添加到A对象内    类似appendChild
+            })
+        })
+    </script>
+    
+    <!--
+        作为对象使用
+            $.each()    隐式便利数组
+            $.trim()    去除两端空格 
+
+    -->
+    <script>
+        $(function(){
+
+            var s = [1,2,3,4,55]
+            $.each(s,function(i,n){
+                console.log(i,n)
+            })
+
+            
+            var ss = "      dddd      "
+            console.log($.trim(ss))         // dddd
+            
+        })
+    </script>
+</body>
+</html>
