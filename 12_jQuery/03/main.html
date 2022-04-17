@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.js"></script>
+    <style>
+        body{background-color: black; color: white;}
+    </style>
+</head>
+<body>
+    <!--
+        基本选择器
+            遵循css中规定的一种语法规则的字符串
+            例如： '#jjj'  '.lll'  'p'   'div'
+            通过$()中传入返回一个伪数组，内存的是一个或多个dom对象
+
+        层次选择器
+            查找祖宗后代和兄弟的选择器
+
+        过滤选择器
+            在原有选择器基础上进一步过滤的选择器
+            基本 内容 可见性 属性
+        
+        表单选择器
+            表单
+            表单对象属性
+    -->
+
+    
+
+    <!--
+        基本选择器   
+    -->
+    <!-- <div id="div1" style="width: 200px; height: 200px; background-color: green;"></div>
+    <div style="width: 200px; height: 200px ; background-color: aqua;"></div> -->
+    <!-- <script>
+        $(function(){
+            // 增添背景颜色来区别
+            // 1    选择id为div1的元素
+            $("#div1").css('background','red')
+            // 2    选择所有div元素
+            $("div")
+            // 3    选择所有class属性为box的元素
+            $(".box")
+            // 4    选择书友div和span元素
+            $("div,span")
+            // 5    选择所有class属性为box的div元素
+            $('div.box')
+        })
+    </script> -->
+
+
+
+    <!--
+        层次选择器    
+    -->
+    <!-- <ul>
+        <li>sssss</li>
+        <li>sssss</li>
+        <li class="box">sssss</li>
+        <li><span class="box">sssss</span></li>
+        <li>sssss</li>
+        <span>sssss</span>
+    </ul> -->
+    <!-- <script>
+        $(function(){
+            // 1    选中ul下的所有span
+            $('ul span')
+            // 2    选中ul下所有的子元素span
+            $('ul>span')
+            // 3    选中Class为box的下一个li
+            $(".box+li")
+            // 4    选中ul下的class为box的元素后面的所有兄弟元素
+            $('ul .box~*').css('background','red')
+        })
+    </script> -->
+
+
+
+    <!--
+        过滤选择器
+    -->
+    <!-- <div id="div1" class="box">class为box的div1</div>
+    <div id="div2" class="box">class为box的div2</div>
+    <div id="div3">div3</div>
+    <br>
+    <ul>
+        <li>aaaaa</li>
+        <li title="hello">bbbbb</li>
+        <li class="box">ccccc</li>
+        <li title="hello">ddddd</li>
+        <li title="two">bbbbb</li>
+        <li style="display: none;">我本来是隐藏的</li>
+    </ul> -->
+    <!-- <script>
+        $(function(){
+            // 1    选择第一个div
+            $('div:first')
+            // 2    选择最后一个class为box的元素
+            $('.box:last')
+            // 3    选择所有class不为box的div
+            $("div:not(.box)")
+            // 4    选择第二个和第三li元素      依次执行，所以小于的方式是大于运行完后运行的
+            $('li:gt(0):lt(2)')
+            // 5    选择内容为bbbbb的li
+            $('li:contains("bbbbb")')
+            // 6    选择隐藏的li
+            $('li:hidden')
+            // 7    选择有title属性的li
+            $('li[title]')
+            // 8    选择说有属性title为hello的li元素
+            $('li[title="hello"]').css('background','red')
+        })
+    </script> -->
+
+
+
+    <!--
+        表单选择器
+    -->
+    <!-- <form>
+        用户名：<input type="text"><br>
+        密码：<input type="password"><br>
+        爱好：
+        <input type="checkbox" checked="checked">篮球
+        <input type="checkbox">足球
+        <input type="checkbox" checked="checked">羽毛球<br>
+        性别：
+        <input type="radio" name="sex" value="male">男
+        <input type="radio" name="sex" value="female">女<br>
+        邮箱：<input type="text" name="email" disabled="disabled"><br>
+        所在地：
+        <select>
+            <option value="1">北京</option>
+            <option value="2" selected="selected">天津</option>
+            <option value="3">河北</option>
+        </select><br>
+        <input type="submit" value="提交">
+    </form> -->
+    <!-- <script>
+        // 1    选择不可用的文本输入框
+        $(':input:disabled').css('background','red')
+        // 2    显示选择爱好的个数
+        console.log($(':checkbox:checked').length)      // 2
+        // 3    点击提交显示选择的城市名称
+        $(':submit').click(function(){
+            // 获取名称
+            console.log($('select>option:selected').html())
+            // 获得walue属性
+            console.log($('select').val())      
+        })
+    </script> -->
+</body>
+</html>
