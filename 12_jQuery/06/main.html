@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.js"></script>
+    <style>
+        body{background-color: black;color: white;}
+    </style>
+</head>
+<body style="height: 2000px;">
+
+    <!--
+        offset和position
+    -->
+    <!-- <style>
+        *{
+            margin: 0;padding: 0;
+        }
+        .div1{
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            top: 20px;
+            left: 10px;
+            background: blue;
+        }
+        .div2{
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            top: 50px;
+            background: red;
+        }
+        .div3{
+            position: absolute;
+            top: 250px;
+        }
+    </style>
+    <div class="div1">
+        <div class="div2">测试offset</div>
+    </div>
+    <div class="div3">
+        <button id="btn1">搜索offset和position</button>
+        <button id="btn2">设置offset</button>
+    </div> -->
+    <!-- <script>
+        $(function(){
+            // 点击btn1
+            $('#btn1').click(function(){
+                // 打印div1相对于页面左上角的位置
+                console.log($('.div1').offset())
+                // 打印div2相对于页面左上角的位置
+                console.log($('.div2').offset())
+                // 打印div1相对于父元素左上角的位置
+                console.log($('.div1').position())
+                // 打印div2相对于父元素左上角的位置
+                console.log($('.div2').position())
+            })
+            // 点击btn2设置div2的左上角坐标
+            $('#btn2').click(function(){
+                $('.div2').offset({
+                    top : 200,
+                    left : 200
+                })
+            })
+        })
+    </script> -->
+
+
+
+    <!--
+        scrollTop和scrollLeft
+    -->
+    <div style="height: 200px; width: 200px;overflow :auto;margin: auto;">
+        this is some text   this is some text   this is some text   this is some text   this is some text   
+        this is some text   this is some text   this is some text   this is some text   this is some text   
+        this is some text   this is some text   this is some text   this is some text   this is some text   
+        this is some text   this is some text   this is some text   this is some text   this is some text   
+        this is some text   this is some text   this is some text   this is some text   this is some text   
+        this is some text   this is some text   this is some text   this is some text   this is some text   
+        this is some text   this is some text   this is some text   this is some text   this is some text   
+    </div><br><br><br>
+    <button id="btn1">得到scrollTop</button><br>
+    <button id="btn2">设置scrollTop</button>
+    <script>
+        // scrollTop    读取设置滚动条的y坐标
+        // 1    得到div和页面滚动条的坐标
+        $(function(){
+            $('#btn1').click(function(){
+                // console.log($('html').scrollTop())   仅谷歌可用  其余返回0
+                // console.log($('body').scrollTop())   ie又不支持  返回0
+                console.log($('body').scrollTop()+$('html').scrollTop())
+                console.log($('div').scrollTop())
+            })
+            // 2    设置页面和div的滚动条
+            $('#btn2').click(function(){
+                $('div').scrollTop(200)
+                $('html,body').scrollTop(200)
+            })
+        })
+        
+
+    </script>
+</body>
+</html>
