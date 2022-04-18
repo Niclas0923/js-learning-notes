@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="http://libs.baidu.com/jquery/1.8.0/jquery.js"></script>
+    <style>
+        body{background-color: black;color: white;}
+    </style>
+</head>
+<body>
+    <!-- <ul>
+        <li>11111</li>
+        <li>111111</li>
+        <li>1111111</li>
+        <li>11111111</li>
+    </ul>
+    <li>2222</li><br>
+    <button id="btn">增添新的li</button>
+    <script>
+        $(function(){
+            // 点击li背景变为红色
+            $('li').click(function(){
+                $(this).css("background",'red')
+            })
+            $('#btn').click(function(){
+                $('<li>2222222</li>')
+                .appendTo($('ul')) 
+                .click(function(){
+                    $(this).css("background",'red')
+                })
+            })
+        })
+    </script> -->
+    <ul>
+        <li>1111</li>
+        <li>2222</li>
+        <li>3333</li>
+        <li>4444</li>
+    </ul>
+    <li>22222</li><br>
+    <button id="btn1">添加新的li</button>
+    <button id="btn2">删除ul上是事件委托的监听器</button>
+    <script>
+        $(function(){
+            // 原生js实现委托的思路
+
+            /* $('ul').click(function(event){
+                // 通过event.target获取冒泡过来的子元素
+                $(event.target).css("background",'red')
+            })
+            $('#btn1').click(function(){
+                $('<li>2222222</li>')
+                .appendTo($('ul')) 
+            }) */
+
+
+            // jQuery实现委托
+
+            /* 设置委托
+                $父元素.delegate(子元素，事件名称，callback)
+            解除委托
+                $父元素.undelegate(事件名称)
+            */
+            $('ul').delegate('li','click',function(){
+                $(this).css("background",'red')
+            })
+            $('#btn1').click(function(){
+                $('<li>2222222</li>')
+                .appendTo($('ul')) 
+            })
+            $('#btn2').click(function(){
+                $('ul').undelegate("click")
+            })
+        })
+    </script>
+    <!--
+        优势
+            添加子元素自动有事件响应处理
+            监听数量减少
+    -->
+</body>
+</html>
