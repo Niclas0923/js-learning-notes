@@ -43,7 +43,7 @@
             $("div")
             // 3    选择所有class属性为box的元素
             $(".box")
-            // 4    选择书友div和span元素
+            // 4    选择所有div和span元素
             $("div,span")
             // 5    选择所有class属性为box的div元素
             $('div.box')
@@ -110,7 +110,7 @@
             // 7    选择有title属性的li
             $('li[title]')
             // 8    选择说有属性title为hello的li元素
-            $('li[title="hello"]').css('background','red')
+            $('li[title="hello"]')
         })
     </script> -->
 
@@ -147,7 +147,7 @@
         $(':submit').click(function(){
             // 获取名称
             console.log($('select>option:selected').html())
-            // 获得walue属性
+            // 获得value属性
             console.log($('select').val())      
         })
     </script> -->
