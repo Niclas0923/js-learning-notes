@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="http://libs.baidu.com/jquery/1.8.0/jquery.js"></script>
+    <style>
+        body{background-color: black;color: white;}
+    </style>
+</head>
+<body>
+    <!-- 对象的过滤 -->
+    <!--
+        通过这些来筛选元素
+        first()
+        last()
+        eq(index|-index)
+        filter(selector)    // 过滤
+        not(selector)
+        has(selector)
+    -->
+    <!-- <ul>
+        <li>AAAAA</li>
+        <li title="hello" class="box2">BBBBB</li>
+        <li class="box">CCCCC</li>
+        <li title="hello">DDDDD</li>
+        <li title="two"><span>BBBBB</span></li>
+    </ul> -->
+    <!-- <script>
+        $(function(){
+            let $ss = $('ul>li')
+            // 1    ul下li标签第一个
+            $ss.first()
+            // 2    ul下li标签最后一个
+            $ss.last()
+            // 3    ul下li标签的第二个
+            $ss.eq(1) 
+            // 4    ul下li标签中title属性为hello的
+            $ss.filter('[title=hello]')
+            // 5    ul下li标签中title属性不为hello的
+            $ss.filter('[title!=hello]')
+                // 有title属性但是不是hello
+                $ss.filter('[title]').not('[title=hello]')
+            // 6    ul下li标签中有span子标签的
+            $ss.has('span').css('background','red')
+        })
+    </script> -->
+
+
+    <!--
+        对象的查找
+            children()  子标签中查找
+            find()      后代中标签中查找
+            parent()    父标签中查找
+            prevAll()   前面所有兄弟元素
+            nextAll()   后面所有兄弟元素
+    -->
+    <div>
+        <ul>
+            <span>span1</span>
+            <li>AAAAA</li>
+            <li title="hello" class="box2">BBBBB</li>
+            <li class="box" id="cc">CCCCC</li>
+            <li title="hello">DDDDD</li>
+            <li title="two"><span>span2</span></li>
+            <span>span3</span>
+        </ul>
+        <span>span4</span><br>
+        <li>eeeee</li>
+        <li>EEEEE</li>
+    </div>
+    <script>
+        $(function(){
+            let $ul = $('ul')
+            // 1    ul标签的第二个span子标签
+            $ul.children('span').eq(1)
+            // 2    ul标签的第二个span后代标签
+            $ul.find('span').eq(1)
+            // 3    ul标签的父标签
+            $ul.parent()
+            // 4    id为cc的li标签的前面的所有li标签
+            $('#cc').prevAll().filter('li')
+            // 5    id为cc的li标签的所有兄弟li标签
+            $('#cc').nextAll().filter('li').css('background','red')
+        })
+    </script>
+</body>
+</html>
