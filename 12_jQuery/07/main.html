@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="http://libs.baidu.com/jquery/1.8.0/jquery.js"></script>
+    <style>
+        body{background-color: black;color: white;}
+        #dddd{
+            width: 100px;
+            height: 150px;
+            background-color: red;
+            padding: 10px;
+            border: 10px yellow solid;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="dddd">div</div>
+    <!-- 
+        内容尺寸
+            height() : height
+            width() : width
+        内部尺寸
+            innerHeight() : height + padding
+            innerWidth() : width + padding
+        外部尺寸
+            outerHeight(true/false) : height + padding + border 如果是true再加上margin
+            outerWidth(true/false) : height + padding + border 如果是true再加上margin
+     -->
+    <script>
+        $(function(){
+            let $ss = $('#dddd')
+            console.log($ss.width(),$ss.height())
+            console.log($ss.innerHeight(),$ss.innerWidth())
+            console.log($ss.outerHeight(true),$ss.outerHeight(false),$ss.outerWidth(true),$ss.outerWidth(false))
+        })
+    </script>
+</body>
+</html>
