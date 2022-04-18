@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="http://libs.baidu.com/jquery/1.8.0/jquery.js"></script>
+    <style>
+        body{background-color: black;color: white;}
+    </style>
+</head>
+<body>
+    <style>
+        *{
+            margin: 0;padding: 0;
+        }
+        body{height: 2000px;}
+        .out{
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            top: 20px;
+            left: 10px;
+            background: blue;
+        }
+        .inner{
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            top: 50px;
+            background: red;
+        }
+        .divbtn{
+            position: absolute;
+            top: 250px;
+        }
+    </style>
+    <div class="out">外部div
+        <div class="inner">内部div</div>
+    </div>
+    <div class="divbtn">
+        <button id="btn1">取消绑定所有事件</button>
+        <button id="btn2">取消绑定mouseover事件</button>
+        <button id="btn3">测试事件坐标</button>
+        <a href="https://www.baidu.com" id="test4">百度一下</a>
+    </div>
+    <script>
+        // 页面加载完全事件
+        $(function(){
+            // 1    给.out绑定点击监听(用两种方法)
+                // 1
+                    /* $('.out').click(function(){
+                        console.log('点击.out');
+                    }) */
+                // 2
+                    $('.out').on('click',function(){
+                        console.log('点击.out');
+                    })
+            // 2    给.inner绑定鼠标绑定移入移出事件监听(3种方法)
+                // 1
+                    $('.inner').mouseenter(function(){
+                        console.log("进入inner")
+                    })
+                    .mouseleave(function(){
+                        console.log("离开inner")
+                    })
+                // 2    
+                    // on
+                // 3
+                    $('.inner').hover(function(){
+                        console.log("进入inner")
+                    },function(){
+                        console.log("离开inner")
+                    })
+            // 3    点击btn1解除.inner上的所有事件监听
+                $('#btn1').click(function(){
+                    $('.inner').off()
+                })
+            // 4    点击btn2解除.inner上的mouseenter事件
+                    // 事实证明hover中的第一个函数也是mouseenter
+                $('#btn2').click(function(){
+                    $('.inner').off("mouseenter")
+                })
+            // 5    点击btn3得到事件坐标
+                    /* 事件坐标有很多
+                    event.clientX,event.clientY     相对于窗口左上角的位置
+                    event.pageX,event.pageY         相对于页面的左上角的位置
+                    event.offsetX,event.offsetY     相对于事件元素的左上角 
+                    */
+                $('#btn3').click(function(event){
+                    console.log(event.offsetX,event.offsetY)
+                })
+            // 6    点击.inner区域，外部监听不响应
+                $('.inner').click(function(event){
+                    event.stopPropagation()
+                    return false
+                })
+            // 7    点击链接，如果当前时间为偶数不跳转
+                $('#test4').click(function(){
+                    if(Date.now()%2 === 0){
+                        console.log("偶数时间跳转失败")
+                        event.preventDefault()
+                        return false
+                    }
+                })
+        })
+    </script>
+</body>
+</html>
