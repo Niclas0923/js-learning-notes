@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://libs.baidu.com/jquery/1.8.0/jquery.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{background-color: black;color: white;height: 2000px;}
+        #top{
+            background-color: orange;
+            width: 50px;
+            height: 50px;
+            position: fixed;
+            bottom: 100px;
+            left: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div id="top"></div>
+    <script>
+        // 平滑滚动回到顶部
+        $(function (){
+            $('#top').click(function (){
+                let ss = $('body').scrollTop()+$('html').scrollTop()
+                let i1 = setInterval(function(){
+                    $('html,body').scrollTop(ss-=30)
+                    if(ss<=0){clearInterval(i1)}
+                },15)
+            })
+        }) 
+    </script>
+</body>
+</html>
