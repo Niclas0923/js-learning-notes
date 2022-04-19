@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="http://libs.baidu.com/jquery/1.8.0/jquery.js"></script>
+    <title>Document</title>
+    <style>
+        body{background-color: black;color: white;}
+        .div1{
+            position:absolute;
+            width: 100px;
+            height: 100px;
+            top: 50px;
+            left: 10px;
+            background: rebeccapurple;
+        }
+    </style>
+</head>
+<body>
+    <!-- 自定义动画 -->
+    <div class="div1"></div>
+    <button id="btn1">逐渐扩大</button>
+    <button id="btn2">移动到指定位置</button>
+    <button id="btn3">移动指定距离</button>
+    <button id="btn4">停止动画</button>
+
+    <script>
+        $(function(){
+            var $div1 = $('.div1')
+            $('#btn1').click(function(){
+                // 宽高扩大为200px
+                // $div1.animate({
+                //     width:200,
+                //     height:200,
+
+                // },1000)
+                // 宽先扩大到200px，高再扩大
+                $div1.animate({
+                    width:200,
+                },1000)
+                .animate({
+                    height:200,
+                },1000)
+            })
+            $('#btn2').click(function(){
+                // 移动到(300,100)处
+                $div1.animate({
+                    left:300,
+                    top:100
+                },1000)
+            })
+            $('#btn3').click(function(){
+                // 移动距离为(100,50)   
+                $div1.animate({ 
+                    left:'+=100',
+                    top:'+=50'
+                })
+            })
+            $('#btn4').click(function(){
+                $div1.stop()
+            })
+        })
+    </script>
+</body>
+</html>
