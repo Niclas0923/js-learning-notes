@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="http://libs.baidu.com/jquery/1.8.0/jquery.js"></script>
+    <style>
+        body{background-color: black;color: white;}
+        .div1{
+            position:absolute;
+            width: 200px;
+            height: 200px;
+            top: 50px;
+            left: 10px;
+            background: rebeccapurple;
+        }
+    </style>
+</head>
+<body>
+    <div class="div1"></div>
+    <!-- 淡入淡出 -->
+    <!-- 通过改变透明度(opacity)来实现 -->
+    <!-- <button id="btn1">慢慢淡出</button>
+    <button id="btn2">慢慢淡入</button>
+    <button id="btn3">切换</button> -->
+    <!-- <script>
+        $(function(){
+            var $div1 = $('.div1')
+            $('#btn1').click(function(){
+                $div1.fadeOut(500,function(){
+                    alert("动画完成了")
+                })
+            })
+            $('#btn2').click(function(){
+                $div1.fadeIn(500)
+            })
+            $('#btn3').click(function(){
+                $div1.fadeToggle(500)
+            })
+        })
+    </script> -->
+
+    <!-- 滑动 -->
+    <!-- 通过不断改变元素的高度实现 -->
+    <!-- <button id="btn1">向上滑动</button>
+    <button id="btn2">向下滑动</button>
+    <button id="btn3">切换</button>
+    <script>
+        $(function(){
+            var $div1 = $('.div1')
+            $('#btn1').click(function(){
+                $div1.slideUp(200) 
+            })
+            $('#btn2').click(function(){
+                $div1.slideDown(200)
+            })
+            $('#btn3').click(function(){
+                $div1.slideToggle(200)
+            })
+        })
+    </script> -->
+
+    <!-- 显示隐藏 -->
+    <!-- 同时修改长宽透明度 -->
+    <button id="btn4">立即显示</button>
+    <button id="btn1">显示</button>
+    <button id="btn2">隐藏</button>
+    <button id="btn3">切换</button>
+    <script>
+        $(function(){
+            var $div1 = $('.div1')
+            $('#btn1').click(function(){
+                $div1.show(200) 
+            })
+            $('#btn2').click(function(){
+                $div1.hide(200)
+            })
+            $('#btn3').click(function(){
+                $div1.toggle(200)
+            })
+            $('#btn4').click(function(){
+                // 不传时间就瞬间显示 
+                $div1.show()
+            })
+        })
+    </script>
+</body>
+</html>
