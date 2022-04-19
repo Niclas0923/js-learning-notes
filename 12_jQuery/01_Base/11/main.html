@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="http://libs.baidu.com/jquery/1.8.0/jquery.js"></script>
+    <style>
+        body{background-color: black;color: white;}
+    </style>
+</head>
+<body>
+    <!-- 
+        如果出现其他库也有$作为对象的情况
+        我们可以直接使用一个函数放弃绑定，让给别的库使用
+        而用jQuery函数就只能用jQuery()来调用
+    -->
+    <script>
+        // jQuery 放弃 $ 的使用
+        jQuery.noConflict()
+        console.log($)      // undefined
+    </script>
+</body>
+</html>
