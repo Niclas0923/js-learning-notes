@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="http://libs.baidu.com/jquery/1.8.0/jquery.js"></script>
+    <style>
+        body{background-color: black;color: white;}
+    </style>
+</head>
+<body>
+    <!-- 
+        区别：
+            window.onload
+                页面所有元素加载完成之后才会回调(包括图片)(晚)
+                只允许有一个监听
+            $(document).ready
+                页面加载完就会回调(不包括图片)(早)
+                可以有多个监听
+        
+     -->
+     <img src="https://tse1-mm.cn.bing.net/th/id/OIP-C.m-qG_3BDCm_fUaNGg6DBwQHaLH?pid=ImgDet&rs=1" alt="图片" id="tupian">
+     <script>
+        //  比较前记得按住shift强制刷新
+         console.log($('#tupian').width()+"直接")   // 0直接
+         
+         window.onload = function(){
+            console.log($('#tupian').width()+"window")  // 474window
+         }
+         $(document).ready(function(){
+            console.log($('#tupian').width()+"ready")   // 0ready
+         })
+        //  简写
+        //  $(function(){
+             
+        //  })
+
+        // ready的解决方案
+
+        $(function(){
+            $('#tupian').on('load',function(){
+                console.log($('#tupian').width()+"ready2")  // 474ready2    并且排在Window获取的前面
+            })
+        })
+     </script>
+     <!--
+         结果：
+            0直接
+            0ready
+            474ready2
+            474window
+     -->
+</body>
+</html>
