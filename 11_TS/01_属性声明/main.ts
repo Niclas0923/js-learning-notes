@@ -25,7 +25,7 @@ d = false
 
 // 函数中选填的项目加一个问号即可
 function dd(a ?:number):number{
-    return 12+a
+    return a?12+a:12
 }
 
 
